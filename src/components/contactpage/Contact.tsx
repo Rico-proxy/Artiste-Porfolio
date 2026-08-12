@@ -48,7 +48,7 @@ export default function Contact() {
           <p className="text-sm font-medium uppercase tracking-[0.16em] text-secondary">
             Get In Touch
           </p>
-          <span className="mt-5 block h-px w-20 bg-secondary" />
+          <span className="line mt-5 w-20" />
 
           <h1 className="head mt-8 max-w-[520px] text-4xl font-medium leading-[0.95] text-foreground">
             Let&apos;s Talk About Your Next Piece

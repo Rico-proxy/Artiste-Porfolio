@@ -1,6 +1,7 @@
 import type { EmblaCarouselType } from "embla-carousel"
 import Autoplay from "embla-carousel-autoplay"
 import useEmblaCarousel from "embla-carousel-react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useEffect } from "react"
 
 type HeroArtwork = {
@@ -10,10 +11,17 @@ type HeroArtwork = {
 
 type HeroArtworkProps = {
   artworks: HeroArtwork[]
+  onNextSlide: () => void
   onApiReady: (api: EmblaCarouselType) => void
+  onPreviousSlide: () => void
 }
 
-export default function HeroArtwork({ artworks, onApiReady }: HeroArtworkProps) {
+export default function HeroArtwork({
+  artworks,
+  onApiReady,
+  onNextSlide,
+  onPreviousSlide,
+}: HeroArtworkProps) {
   const [carouselRef, carouselApi] = useEmblaCarousel(
     {
       align: "start",
@@ -38,7 +46,7 @@ export default function HeroArtwork({ artworks, onApiReady }: HeroArtworkProps) 
   }, [carouselApi, onApiReady])
 
   return (
-    <div className="relative z-10 flex items-center justify-center px-6 py-12 sm:px-10 lg:justify-end lg:px-8 lg:py-10 xl:pr-24">
+    <div className="relative z-10 flex items-center justify-center px-6 pb-12 pt-2 sm:px-10 lg:justify-end lg:px-8 lg:py-10 xl:pr-24">
       <div className="relative w-full max-w-[620px]">
         <div className="relative p-3">
           <div className="overflow-hidden rounded-lg" ref={carouselRef}>
@@ -54,6 +62,24 @@ export default function HeroArtwork({ artworks, onApiReady }: HeroArtworkProps) 
               ))}
             </div>
           </div>
+        </div>
+        <div className="mt-5 flex items-center justify-center gap-4 lg:hidden">
+          <button
+            type="button"
+            aria-label="Previous artwork"
+            className="grid size-14 place-items-center border border-white/10 bg-primary/30 text-secondary transition-colors hover:border-secondary"
+            onClick={onPreviousSlide}
+          >
+            <ChevronLeft className="size-5" strokeWidth={1.7} />
+          </button>
+          <button
+            type="button"
+            aria-label="Next artwork"
+            className="grid size-14 place-items-center border border-white/10 bg-primary/30 text-secondary transition-colors hover:border-secondary"
+            onClick={onNextSlide}
+          >
+            <ChevronRight className="size-5" strokeWidth={1.7} />
+          </button>
         </div>
       </div>
     </div>

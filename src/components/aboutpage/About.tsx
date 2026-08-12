@@ -31,7 +31,7 @@ export default function About() {
             <p className="text-sm font-medium uppercase tracking-[0.18em] text-secondary">
               About The Artist
             </p>
-            <span className="mt-5 block h-px w-20 bg-secondary" />
+            <span className="line mt-5 w-20" />
             <h1 className="head mt-8 max-w-4xl text-6xl font-medium leading-none text-foreground md:text-8xl">
               Prince Akeni Prosper
               <span className="text-secondary">.</span>
