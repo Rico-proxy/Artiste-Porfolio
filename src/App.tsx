@@ -1,20 +1,36 @@
-import { Button } from "@/components/ui/button"
+import { Navigate, Route, Routes } from "react-router-dom"
+
+import BaseLayout from "@/layout/BaseLayout"
+import AboutPage from "@/pages/AboutPage"
+import ArtworkPage from "@/pages/ArtworkPage"
+import ArtworksPage from "@/pages/ArtworksPage"
+import ContactPage from "@/pages/ContactPage"
+import ExhibitionsPage from "@/pages/ExhibitionsPage"
+import KulukismPage from "@/pages/KulukismPage"
+import LandingPage from "@/pages/LandingPage"
+import LegacyArtworkRedirect from "@/pages/LegacyArtworkRedirect"
+import PressPage from "@/pages/PressPage"
+import ProjectsPage from "@/pages/ProjectsPage"
+import UalStudiosPage from "@/pages/UalStudiosPage"
 
 export function App() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
-    </div>
+    <Routes>
+      <Route element={<BaseLayout />}>
+        <Route index element={<LandingPage />} />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="artworks" element={<ArtworksPage />} />
+        <Route path="artworks/:slug" element={<ArtworkPage />} />
+        <Route path="projects" element={<ProjectsPage />} />
+        <Route path="kulukism" element={<KulukismPage />} />
+        <Route path="ual-studios" element={<UalStudiosPage />} />
+        <Route path="exhibitions" element={<ExhibitionsPage />} />
+        <Route path="press" element={<PressPage />} />
+        <Route path="contact" element={<ContactPage />} />
+        <Route path="gallery" element={<Navigate to="/artworks" replace />} />
+        <Route path="gallery/:slug" element={<LegacyArtworkRedirect />} />
+      </Route>
+    </Routes>
   )
 }
 
