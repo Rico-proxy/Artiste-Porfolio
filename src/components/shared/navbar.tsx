@@ -39,7 +39,7 @@ export default function Navbar() {
             AKENI<span className="text-secondary">.</span>
           </Link>
 
-          <div className="hidden items-center gap-5 xl:flex 2xl:gap-8">
+          <div className="hidden items-center gap-3 lg:flex xl:gap-5 2xl:gap-8">
             {mainNavItems.map((item) => (
               <NavLink
                 key={item.to}
@@ -47,7 +47,7 @@ export default function Navbar() {
                 end={item.to === "/"}
                 className={({ isActive }) =>
                   [
-                    "relative py-2 text-sm font-medium transition-colors",
+                    "relative py-2 text-xs font-medium transition-colors xl:text-sm",
                     isActive
                       ? "text-secondary"
                       : "text-muted-foreground hover:text-foreground",
@@ -69,7 +69,7 @@ export default function Navbar() {
               to={contactNavItem.to}
               className={({ isActive }) =>
                 [
-                  "border px-5 py-3 text-sm font-medium transition-colors",
+                  "border px-3 py-2.5 text-xs font-medium transition-colors xl:px-5 xl:py-3 xl:text-sm",
                   isActive
                     ? "border-secondary text-secondary"
                     : "border-secondary/70 text-foreground hover:border-secondary hover:text-secondary",
@@ -83,7 +83,7 @@ export default function Navbar() {
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger
               aria-label="Open navigation menu"
-              className="grid size-11 place-items-center border border-secondary/70 text-secondary transition-colors hover:border-secondary hover:text-foreground xl:hidden"
+              className="grid size-11 place-items-center border border-secondary/70 text-secondary transition-colors hover:border-secondary hover:text-foreground lg:hidden"
             >
               <Menu className="size-6" strokeWidth={1.7} />
             </SheetTrigger>

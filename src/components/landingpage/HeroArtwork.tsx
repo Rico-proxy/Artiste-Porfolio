@@ -56,7 +56,7 @@ export default function HeroArtwork({
                   <img
                     src={artwork.src}
                     alt={artwork.alt}
-                    className="brightness-115 saturate-115 border border-white/10 w-full h-[48svh] lg:h-[calc(100svh-400px)] xl:h-[calc(100svh-210px)] min-h-[340px] lg:min-h-0 object-cover contrast-105"
+                    className="brightness-115 saturate-115 border border-white/10 w-full lg:h-[clamp(340px,58svh,520px)] xl:h-[clamp(420px,68svh,620px)] min-h-[340px] lg:min-h-0 object-cover contrast-105"
                   />
                 </div>
               ))}

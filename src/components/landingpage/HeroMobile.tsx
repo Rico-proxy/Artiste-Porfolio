@@ -83,7 +83,7 @@ export default function HeroMobile() {
           Artist • Sculptor • Designer
         </p>
 
-        <h1 className="mx-auto mt-4 max-w-[360px] font-semibold text-[2.35rem] text-foreground text-center leading-[0.96] head">
+        <h1 className="mx-auto mt-4 max-w-[360px] md:max-w-[560px] font-semibold text-[2.35rem] text-foreground text-center leading-[0.96] head">
           Creating Art That Transcends Canvas, Space and Time
           <span className="text-secondary">.</span>
         </h1>
@@ -93,7 +93,9 @@ export default function HeroMobile() {
             <span className="font-semibold text-secondary text-3xl leading-none head">
               {formatSlideNumber(currentSlide)}
             </span>
-            <span className="text-muted-foreground text-2xl leading-none">/</span>
+            <span className="text-muted-foreground text-2xl leading-none">
+              /
+            </span>
             <span className="text-muted-foreground text-2xl leading-none">
               {formatSlideNumber(slideCount)}
             </span>
@@ -119,7 +121,10 @@ export default function HeroMobile() {
           </div>
         </div>
 
-        <div className="mt-6 border border-white/15 rounded overflow-hidden" ref={carouselRef}>
+        <div
+          className="mt-6 border border-white/15 rounded overflow-hidden"
+          ref={carouselRef}
+        >
           <div className="flex">
             {heroArtworks.map((artwork) => (
               <div className="flex-[0_0_100%] min-w-0" key={artwork.src}>
