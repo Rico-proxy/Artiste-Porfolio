@@ -59,11 +59,11 @@ function SheetContent({
 }: SheetContentProps) {
   return (
     <DialogPrimitive.Portal>
-      <DialogPrimitive.Backdrop className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm transition-opacity duration-300 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0" />
+      <DialogPrimitive.Backdrop className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm transition-opacity duration-300 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0" />
       <DialogPrimitive.Popup
         data-slot="sheet-content"
         className={cn(
-          "fixed z-50 border-white/10 bg-[#080809] p-6 text-foreground shadow-2xl transition duration-300 ease-out focus:outline-none",
+          "fixed z-[101] border-white/10 bg-[#080809] p-6 text-foreground shadow-2xl transition duration-300 ease-out focus:outline-none",
           sideClasses[side],
           className
         )}
