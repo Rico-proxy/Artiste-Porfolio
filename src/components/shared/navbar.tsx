@@ -34,9 +34,9 @@ export default function Navbar() {
           <Link
             to="/"
             className="head text-2xl font-semibold uppercase tracking-[0.42em] text-foreground md:text-3xl"
-            aria-label="Artiste home"
+            aria-label="Akeni home"
           >
-            ARTISTE<span className="text-secondary">.</span>
+            AKENI<span className="text-secondary">.</span>
           </Link>
 
           <div className="hidden items-center gap-5 xl:flex 2xl:gap-8">
@@ -90,7 +90,7 @@ export default function Navbar() {
             <SheetContent side="right" className="flex flex-col">
               <SheetHeader className="pr-10">
                 <SheetTitle>
-                  ARTISTE<span className="text-secondary">.</span>
+                  AKENI<span className="text-secondary">.</span>
                 </SheetTitle>
                 <SheetDescription>
                   Prince Akeni Prosper studio navigation.

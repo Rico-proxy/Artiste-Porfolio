@@ -46,28 +46,28 @@ export default function HeroArtwork({
   }, [carouselApi, onApiReady])
 
   return (
-    <div className="relative z-10 flex items-center justify-center px-6 pb-12 pt-2 sm:px-10 lg:justify-end lg:px-8 lg:py-10 xl:pr-24">
-      <div className="relative w-full max-w-[620px]">
+    <div className="z-10 relative flex justify-center lg:justify-end items-center px-6 sm:px-10 lg:px-8 lg:py-10 pt-2 xl:pr-24 pb-12">
+      <div className="relative w-full max-w-[620px] lg:translate-y-20 xl:translate-y-0">
         <div className="relative p-3">
-          <div className="overflow-hidden rounded-lg" ref={carouselRef}>
+          <div className="rounded-lg overflow-hidden" ref={carouselRef}>
             <div className="flex">
               {artworks.map((artwork) => (
-                <div className="min-w-0 flex-[0_0_100%]" key={artwork.src}>
+                <div className="flex-[0_0_100%] min-w-0" key={artwork.src}>
                   <img
                     src={artwork.src}
                     alt={artwork.alt}
-                    className="h-[48svh] min-h-[340px] w-full border border-white/10 object-cover brightness-115 contrast-105 saturate-115 lg:h-[calc(100svh-220px)] lg:min-h-0"
+                    className="brightness-115 saturate-115 border border-white/10 w-full h-[48svh] lg:h-[calc(100svh-400px)] xl:h-[calc(100svh-210px)] min-h-[340px] lg:min-h-0 object-cover contrast-105"
                   />
                 </div>
               ))}
             </div>
           </div>
         </div>
-        <div className="mt-5 flex items-center justify-center gap-4 lg:hidden">
+        <div className="lg:hidden flex justify-center items-center gap-4 mt-5">
           <button
             type="button"
             aria-label="Previous artwork"
-            className="grid size-14 place-items-center border border-white/10 bg-primary/30 text-secondary transition-colors hover:border-secondary"
+            className="place-items-center grid bg-primary/30 border border-white/10 hover:border-secondary size-14 text-secondary transition-colors"
             onClick={onPreviousSlide}
           >
             <ChevronLeft className="size-5" strokeWidth={1.7} />
@@ -75,7 +75,7 @@ export default function HeroArtwork({
           <button
             type="button"
             aria-label="Next artwork"
-            className="grid size-14 place-items-center border border-white/10 bg-primary/30 text-secondary transition-colors hover:border-secondary"
+            className="place-items-center grid bg-primary/30 border border-white/10 hover:border-secondary size-14 text-secondary transition-colors"
             onClick={onNextSlide}
           >
             <ChevronRight className="size-5" strokeWidth={1.7} />
