@@ -1,14 +1,28 @@
-import image1 from "@/assets/images/image1.jpg"
-import image10 from "@/assets/images/image10.webp"
-import image11 from "@/assets/images/image11.webp"
-import image2 from "@/assets/images/image2.webp"
-import image3 from "@/assets/images/image3.webp"
-import image4 from "@/assets/images/image4.webp"
-import image5 from "@/assets/images/image5.webp"
-import image6 from "@/assets/images/image6.webp"
-import image7 from "@/assets/images/image7.webp"
-import image8 from "@/assets/images/image8.webp"
-import image9 from "@/assets/images/image9.webp"
+import { akeniImages } from "@/assets/images"
+
+const assignedAkeniNumbers = new Set([
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+])
+
+function getAkeniImage(number: number) {
+  const image = akeniImages.find((item) => item.number === number)
+
+  if (!image) {
+    throw new Error(`Missing Akeni image ${number}`)
+  }
+
+  return image.src
+}
+
+function getAkeniTitle(number: number) {
+  const image = akeniImages.find((item) => item.number === number)
+
+  if (!image) {
+    throw new Error(`Missing Akeni image ${number}`)
+  }
+
+  return image.title
+}
 
 export type ArtworkCategory =
   | "paintings"
@@ -49,18 +63,18 @@ export const artworkCategories: {
   { label: "Collections", value: "collections" },
 ]
 
-export const artworks: Artwork[] = [
+const featuredArtworks: Artwork[] = [
   {
     id: 1,
     slug: "shattered-resilience",
-    title: "Shattered Resilience",
+    title: getAkeniTitle(14),
     year: "2026",
     category: "paintings",
     medium: "Heavy-body oil impasto, cold leaf, wax medium",
     dimensions: "48 x 60 in",
     status: "Available",
-    src: image4,
-    alt: "Black and gold fractured portrait painting",
+    src: getAkeniImage(14),
+    alt: "Akeni figurative painting with a seated woman and floral background",
     excerpt:
       "A meditation on pressure, repair, and the luminous marks left by survival.",
     story: [
@@ -76,14 +90,14 @@ export const artworks: Artwork[] = [
   {
     id: 2,
     slug: "red-weather",
-    title: "Red Weather",
+    title: getAkeniTitle(7),
     year: "2026",
     category: "mixed-media",
     medium: "Acrylic, mineral pigment, graphite",
     dimensions: "54 x 40 in",
     status: "Available",
-    src: image2,
-    alt: "Abstract red and teal expressionist artwork",
+    src: getAkeniImage(7),
+    alt: "Akeni blue and green portrait painting with a draped figure",
     excerpt:
       "An atmospheric field of color where memory breaks open into movement.",
     story: [
@@ -99,14 +113,14 @@ export const artworks: Artwork[] = [
   {
     id: 3,
     slug: "after-the-thaw",
-    title: "After the Thaw",
+    title: getAkeniTitle(9),
     year: "2025",
     category: "public-art",
     medium: "Digital painting, archival pigment print",
     dimensions: "36 x 36 in",
     status: "Editioned",
-    src: image3,
-    alt: "Painterly mountain landscape with lone figure",
+    src: getAkeniImage(9),
+    alt: "Akeni studio painting of a seated woman in front of a floral scene",
     excerpt:
       "A lone figure stands inside a vast passage of stone, snow, and sky.",
     story: [
@@ -122,14 +136,14 @@ export const artworks: Artwork[] = [
   {
     id: 4,
     slug: "ashen-figure",
-    title: "Ashen Figure",
+    title: getAkeniTitle(3),
     year: "2026",
     category: "paintings",
     medium: "Ink, charcoal, acrylic on canvas",
     dimensions: "42 x 58 in",
     status: "Available",
-    src: image1,
-    alt: "Expressive black and white figure painting",
+    src: getAkeniImage(3),
+    alt: "Akeni portrait painting of a smiling child",
     excerpt:
       "A figure assembled from gesture, shadow, and sudden white silence.",
     story: [
@@ -145,14 +159,14 @@ export const artworks: Artwork[] = [
   {
     id: 5,
     slug: "quiet-gold",
-    title: "Quiet Gold",
+    title: getAkeniTitle(4),
     year: "2025",
     category: "portraits",
     medium: "Oil, plaster, metallic pigment",
     dimensions: "30 x 44 in",
     status: "Private collection",
-    src: image4,
-    alt: "Gold-veined dark portrait artwork",
+    src: getAkeniImage(4),
+    alt: "Akeni figurative artwork photographed in the studio",
     excerpt:
       "A smaller interior-scale study of rupture, reflection, and restraint.",
     story: [
@@ -168,14 +182,14 @@ export const artworks: Artwork[] = [
   {
     id: 6,
     slug: "minor-monument",
-    title: "Minor Monument",
+    title: getAkeniTitle(5),
     year: "2024",
     category: "sculptures",
     medium: "Photographic study of carved form",
     dimensions: "24 x 36 in",
     status: "Available",
-    src: image1,
-    alt: "Monochrome sculptural figure study",
+    src: getAkeniImage(5),
+    alt: "Akeni artwork photographed as a studio progress image",
     excerpt:
       "A sculptural study that treats stillness as a kind of emotional architecture.",
     story: [
@@ -191,14 +205,14 @@ export const artworks: Artwork[] = [
   {
     id: 7,
     slug: "valley-witness",
-    title: "Valley Witness",
+    title: getAkeniTitle(6),
     year: "2025",
     category: "contemporary-works",
     medium: "Digital matte painting",
     dimensions: "40 x 50 in",
     status: "Available",
-    src: image3,
-    alt: "Epic valley landscape artwork",
+    src: getAkeniImage(6),
+    alt: "Akeni figurative artwork with expressive color",
     excerpt:
       "A cinematic terrain study about scale, solitude, and returning light.",
     story: [
@@ -214,14 +228,14 @@ export const artworks: Artwork[] = [
   {
     id: 8,
     slug: "signal-bloom",
-    title: "Signal Bloom",
+    title: getAkeniTitle(8),
     year: "2026",
     category: "mixed-media",
     medium: "Acrylic, ink, resin on panel",
     dimensions: "38 x 38 in",
     status: "Available",
-    src: image2,
-    alt: "Red and teal abstract bloom artwork",
+    src: getAkeniImage(8),
+    alt: "Akeni painting with a seated figure and soft studio light",
     excerpt:
       "A burst of red cuts through cool fields like a message arriving late.",
     story: [
@@ -237,14 +251,14 @@ export const artworks: Artwork[] = [
   {
     id: 9,
     slug: "nocturne-mask",
-    title: "Nocturne Mask",
+    title: getAkeniTitle(10),
     year: "2025",
     category: "portraits",
     medium: "Oil, alkyd, gold pigment",
     dimensions: "36 x 48 in",
     status: "Available",
-    src: image4,
-    alt: "Dark portrait with gold cracks",
+    src: getAkeniImage(10),
+    alt: "Akeni vertical portrait artwork",
     excerpt:
       "A nocturnal portrait study where ornament becomes evidence.",
     story: [
@@ -260,14 +274,14 @@ export const artworks: Artwork[] = [
   {
     id: 10,
     slug: "white-noise-body",
-    title: "White Noise Body",
+    title: getAkeniTitle(11),
     year: "2026",
     category: "paintings",
     medium: "Acrylic ink, charcoal, gesso",
     dimensions: "44 x 56 in",
     status: "Available",
-    src: image1,
-    alt: "Abstract figure in black and white",
+    src: getAkeniImage(11),
+    alt: "Akeni panoramic mural with bright abstract forms",
     excerpt:
       "A body emerging from static, motion, and deliberate visual interruption.",
     story: [
@@ -283,14 +297,14 @@ export const artworks: Artwork[] = [
   {
     id: 11,
     slug: "room-for-sky",
-    title: "Room for Sky",
+    title: getAkeniTitle(12),
     year: "2024",
     category: "collections",
     medium: "Archival pigment print",
     dimensions: "28 x 28 in",
     status: "Editioned",
-    src: image3,
-    alt: "Mountain landscape artwork with pale sky",
+    src: getAkeniImage(12),
+    alt: "Akeni mural detail with city and coastal imagery",
     excerpt:
       "A calm landscape edition built for quiet rooms and long looking.",
     story: [
@@ -306,14 +320,14 @@ export const artworks: Artwork[] = [
   {
     id: 12,
     slug: "red-current",
-    title: "Red Current",
+    title: getAkeniTitle(13),
     year: "2026",
     category: "mixed-media",
     medium: "Acrylic, oil stick, pigment",
     dimensions: "50 x 32 in",
     status: "Available",
-    src: image2,
-    alt: "Abstract teal artwork with red energetic marks",
+    src: getAkeniImage(13),
+    alt: "Akeni colorful interior mural photographed on a staircase",
     excerpt:
       "An abstract work about momentum, resistance, and sudden heat.",
     story: [
@@ -329,14 +343,14 @@ export const artworks: Artwork[] = [
   {
     id: 13,
     slug: "ceremonial-ascent",
-    title: "Ceremonial Ascent",
+    title: getAkeniTitle(1),
     year: "2025",
     category: "collections",
     medium: "Archival study, pigment print",
     dimensions: "32 x 42 in",
     status: "Available",
-    src: image5,
-    alt: "Historic figurative artwork with an ascending ceremonial composition",
+    src: getAkeniImage(1),
+    alt: "Akeni colorful interior mural with abstract transportation imagery",
     excerpt:
       "A layered figurative study of movement, elevation, and collective ritual.",
     story: [
@@ -352,14 +366,14 @@ export const artworks: Artwork[] = [
   {
     id: 14,
     slug: "civic-figure-study",
-    title: "Civic Figure Study",
+    title: getAkeniTitle(2),
     year: "2026",
     category: "sculptures",
     medium: "Sculptural reference study",
     dimensions: "40 x 52 in",
     status: "Studio archive",
-    src: image6,
-    alt: "Classical sculptural figure artwork study",
+    src: getAkeniImage(2),
+    alt: "Akeni vertical artwork image with a figure study",
     excerpt:
       "A monumental figure study exploring posture, dignity, and public presence.",
     story: [
@@ -375,14 +389,14 @@ export const artworks: Artwork[] = [
   {
     id: 15,
     slug: "vault-of-figures",
-    title: "Vault of Figures",
+    title: getAkeniTitle(15),
     year: "2025",
     category: "contemporary-works",
     medium: "Historic image study, archival pigment",
     dimensions: "44 x 44 in",
     status: "Available",
-    src: image7,
-    alt: "Square classical artwork filled with figures and architectural drama",
+    src: getAkeniImage(15),
+    alt: "Akeni artwork photographed in a studio setting",
     excerpt:
       "A dense image of bodies, architecture, and motion arranged like a visual archive.",
     story: [
@@ -398,14 +412,14 @@ export const artworks: Artwork[] = [
   {
     id: 16,
     slug: "river-procession",
-    title: "River Procession",
+    title: getAkeniTitle(16),
     year: "2024",
     category: "public-art",
     medium: "Mural concept study",
     dimensions: "36 x 48 in",
     status: "Concept",
-    src: image8,
-    alt: "Classical landscape artwork with figures near water",
+    src: getAkeniImage(16),
+    alt: "Akeni compact portrait painting photographed close up",
     excerpt:
       "A public-art concept where landscape becomes a stage for procession and memory.",
     story: [
@@ -421,14 +435,14 @@ export const artworks: Artwork[] = [
   {
     id: 17,
     slug: "studio-portrait-light",
-    title: "Studio Portrait Light",
+    title: getAkeniTitle(17),
     year: "2026",
     category: "portraits",
     medium: "Portrait study, oil reference",
     dimensions: "30 x 45 in",
     status: "Available",
-    src: image9,
-    alt: "Portrait artwork study with soft studio light",
+    src: getAkeniImage(17),
+    alt: "Akeni artwork with expressive portrait detail",
     excerpt:
       "A portrait study focused on quiet expression, skin tone, and directional light.",
     story: [
@@ -444,14 +458,14 @@ export const artworks: Artwork[] = [
   {
     id: 18,
     slug: "gold-ground-memory",
-    title: "Gold Ground Memory",
+    title: getAkeniTitle(18),
     year: "2025",
     category: "mixed-media",
     medium: "Archival image, pigment, surface texture",
     dimensions: "34 x 46 in",
     status: "Available",
-    src: image10,
-    alt: "Warm historical artwork study with gold and earth tones",
+    src: getAkeniImage(18),
+    alt: "Akeni artwork photographed from a horizontal angle",
     excerpt:
       "A warm surface study where historic imagery becomes texture, atmosphere, and memory.",
     story: [
@@ -467,14 +481,14 @@ export const artworks: Artwork[] = [
   {
     id: 19,
     slug: "threshold-figure",
-    title: "Threshold Figure",
+    title: getAkeniTitle(19),
     year: "2026",
     category: "paintings",
     medium: "Oil study on canvas",
     dimensions: "36 x 48 in",
     status: "Available",
-    src: image11,
-    alt: "Vertical artwork study with a central figure and textured surface",
+    src: getAkeniImage(19),
+    alt: "Akeni artwork with warm portrait tones",
     excerpt:
       "A vertical figure study about arrival, silence, and the tension of standing still.",
     story: [
@@ -487,6 +501,52 @@ export const artworks: Artwork[] = [
       "Muted glaze treatment",
     ],
   },
+]
+
+const categoryRotation: ArtworkCategory[] = [
+  "paintings",
+  "portraits",
+  "mixed-media",
+  "public-art",
+  "contemporary-works",
+  "collections",
+  "sculptures",
+]
+
+const additionalAkeniArtworks: Artwork[] = akeniImages
+  .filter((image) => !assignedAkeniNumbers.has(image.number))
+  .map((image, index) => {
+    const category = categoryRotation[index % categoryRotation.length]
+    const paddedNumber = String(image.number).padStart(2, "0")
+
+    return {
+      id: featuredArtworks.length + index + 1,
+      slug: `akeni-study-${paddedNumber}`,
+      title: image.title,
+      year: "2026",
+      category,
+      medium: "Artwork and studio documentation",
+      dimensions: "Variable dimensions",
+      status: "Studio archive",
+      src: image.src,
+      alt: image.alt,
+      excerpt:
+        "A selected Akeni image from the studio archive, presented as part of the full artwork collection.",
+      story: [
+        "This image extends the archive of Akeni works shown across the site.",
+        "It is included to give visitors a fuller view of the artist's range, studio process, and finished pieces.",
+      ],
+      process: [
+        "Studio archive image",
+        "Artwork documentation",
+        "Curated collection sequence",
+      ],
+    }
+  })
+
+export const artworks: Artwork[] = [
+  ...featuredArtworks,
+  ...additionalAkeniArtworks,
 ]
 
 export function getArtworkBySlug(slug: string | undefined) {
