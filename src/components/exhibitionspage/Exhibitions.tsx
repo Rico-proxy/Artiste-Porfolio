@@ -27,7 +27,7 @@ const exhibitions = [
 
 export default function Exhibitions() {
   return (
-    <section className="bg-[#080809] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
+    <section className="bg-background px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
       <div className="mx-auto max-w-[1200px]">
         <p className="text-sm font-medium uppercase tracking-[0.18em] text-secondary">
           Exhibitions
@@ -37,7 +37,7 @@ export default function Exhibitions() {
           <span className="text-secondary">.</span>
         </h1>
 
-        <div className="mt-14 divide-y divide-white/10 border-y border-white/10">
+        <div className="mt-14 divide-y divide-white/10 border-y border-border">
           {exhibitions.map((exhibition) => (
             <article
               key={`${exhibition.year}-${exhibition.title}`}

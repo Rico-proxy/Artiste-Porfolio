@@ -24,7 +24,7 @@ const milestones = [
 
 export default function About() {
   return (
-    <section className="bg-[#080809] px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
+    <section className="bg-background px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
       <div className="mx-auto max-w-[1440px]">
         <div className="lg:items-end gap-12 grid lg:grid-cols-[0.9fr_1.1fr]">
           <div>
@@ -59,7 +59,7 @@ export default function About() {
                 const Icon = item.icon
 
                 return (
-                  <article key={item.label} className="p-5 border border-white/10">
+                  <article key={item.label} className="p-5 border border-border">
                     <Icon className="size-7 text-secondary" strokeWidth={1.5} />
                     <p className="mt-5 font-semibold text-secondary text-xs uppercase tracking-[0.18em]">
                       {item.label}
@@ -72,7 +72,7 @@ export default function About() {
               })}
             </div>
 
-            <div className="gap-8 grid md:grid-cols-2 mt-10 py-10 border-white/10 border-y">
+            <div className="gap-8 grid md:grid-cols-2 mt-10 py-10 border-border border-y">
               <div>
                 <h2 className="font-medium text-foreground text-4xl head">
                   Biography
@@ -102,7 +102,7 @@ export default function About() {
               <h2 className="font-medium text-foreground text-4xl head">
                 Awards & Recognition
               </h2>
-              <div className="mt-6 border-white/10 border-y divide-y divide-white/10">
+              <div className="mt-6 border-border border-y divide-y divide-white/10">
                 {[
                   "Selected for regional public art beautification projects",
                   "Commissioned for institutional sculpture and identity work",

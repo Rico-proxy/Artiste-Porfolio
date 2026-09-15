@@ -42,9 +42,9 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section className="bg-[#080809] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
+    <section className="bg-background px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
       <div className="mx-auto max-w-[1440px]">
-        <div className="grid gap-8 border-b border-white/10 pb-10 lg:grid-cols-[1fr_0.75fr] lg:items-end">
+        <div className="grid gap-8 border-b border-border pb-10 lg:grid-cols-[1fr_0.75fr] lg:items-end">
           <div>
             <p className="text-sm font-medium uppercase tracking-[0.18em] text-secondary">
               Projects
@@ -65,7 +65,7 @@ export default function Projects() {
           {projectCategories.map((category) => (
             <span
               key={category}
-              className="shrink-0 border border-white/10 px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground"
+              className="shrink-0 border border-border px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground"
             >
               {category}
             </span>
@@ -74,7 +74,7 @@ export default function Projects() {
 
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
           {projects.map((project) => (
-            <article key={project.title} className="group border border-white/10">
+            <article key={project.title} className="group border border-border">
               <div className="overflow-hidden">
                 <img
                   src={project.image}

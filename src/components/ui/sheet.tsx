@@ -59,11 +59,11 @@ function SheetContent({
 }: SheetContentProps) {
   return (
     <DialogPrimitive.Portal>
-      <DialogPrimitive.Backdrop className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm transition-opacity duration-300 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0" />
+      <DialogPrimitive.Backdrop className="fixed inset-0 z-[100] bg-foreground/40 backdrop-blur-sm transition-opacity duration-300 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0" />
       <DialogPrimitive.Popup
         data-slot="sheet-content"
         className={cn(
-          "fixed z-[101] border-white/10 bg-[#080809] p-6 text-foreground shadow-2xl transition duration-300 ease-out focus:outline-none",
+          "fixed z-[101] border-border bg-background p-6 text-foreground shadow-2xl transition duration-300 ease-out focus:outline-none",
           sideClasses[side],
           className
         )}
@@ -72,7 +72,7 @@ function SheetContent({
         {showCloseButton ? (
           <DialogPrimitive.Close
             aria-label="Close menu"
-            className="absolute right-5 top-5 grid size-10 place-items-center border border-white/10 text-muted-foreground transition-colors hover:border-secondary hover:text-secondary"
+            className="absolute right-5 top-5 grid size-10 place-items-center border border-border text-muted-foreground transition-colors hover:border-secondary hover:text-secondary"
           >
             <X className="size-5" strokeWidth={1.7} />
           </DialogPrimitive.Close>

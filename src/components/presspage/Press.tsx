@@ -25,7 +25,7 @@ const pressItems = [
 
 export default function Press() {
   return (
-    <section className="bg-[#080809] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
+    <section className="bg-background px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
       <div className="mx-auto max-w-[1440px]">
         <div className="grid gap-8 lg:grid-cols-[0.8fr_1fr] lg:items-end">
           <div>
@@ -47,7 +47,7 @@ export default function Press() {
           {pressItems.map((item) => (
             <article
               key={item.title}
-              className="group flex min-h-64 flex-col justify-between border border-white/10 p-7 transition-colors hover:border-secondary/70"
+              className="group flex min-h-64 flex-col justify-between border border-border p-7 transition-colors hover:border-secondary/70"
             >
               <div className="flex items-start justify-between gap-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">

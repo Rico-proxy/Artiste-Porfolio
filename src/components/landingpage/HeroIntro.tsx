@@ -19,61 +19,57 @@ export default function HeroIntro({
   slideCount,
 }: HeroIntroProps) {
   return (
-    <div className="z-10 relative flex items-center px-6 sm:px-10 lg:px-14 py-10 sm:py-12 lg:py-10 min-w-0 overflow-hidden">
-      <div className="z-10 relative w-full max-w-[620px]">
-        <div className="mb-7 lg:mb-7">
-          <p className="font-medium text-secondary text-xl">
+    <div className="relative z-10 col-span-5 flex min-w-0 flex-col justify-center">
+      <div className="relative z-10 w-full max-w-[560px]">
+        <div className="mb-6">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-secondary">
             Artist • Sculptor • Designer
           </p>
-          <span className="mt-4 w-16 line" />
         </div>
 
-        <h1 className="max-w-[600px] font-bold text-foreground text-2xl md:text-4xl xl:text-5xl leading-[0.98] head">
+        <h1 className="head max-w-[620px] text-5xl font-semibold leading-[1.04] tracking-normal text-[#f7f3ea] xl:text-[3.95rem] 2xl:text-[4.35rem]">
           Creating Art That Transcends Canvas, Space and Time
           <span className="text-secondary">.</span>
         </h1>
 
-        <span className="mt-4 w-14 line" />
-
-        <p className="mt-6 lg:mt-6 max-w-[520px] text-muted-foreground text-lg md:text-xl leading-8 md:leading-9">
+        <p className="mt-6 max-w-[540px] text-lg font-light leading-8 text-[#d7cfbd]">
           Exploring African creativity through painting, sculpture, public art,
           and cultural projects shaped by a distinct visual language.
         </p>
 
         <Link
           to="/artworks"
-          className="inline-flex items-center gap-8 mt-7 lg:mt-7 px-6 border border-secondary/80 hover:border-secondary h-12 font-medium text-foreground text-md hover:text-secondary transition-colors"
+          className="mt-8 inline-flex h-15 items-center gap-5 rounded-full border border-secondary/80 px-8 text-sm font-semibold uppercase tracking-[0.18em] text-[#f7f3ea] transition-all duration-300 hover:border-secondary hover:bg-secondary hover:text-[#1a1a1f]"
         >
           View Artworks
-          <ArrowRight className="size-6 text-secondary" strokeWidth={1.6} />
+          <ArrowRight className="size-5" strokeWidth={1.7} />
         </Link>
 
-        <div className="flex justify-between items-center gap-8 mt-9 lg:mt-10">
-          <div className="flex items-end gap-4 text-center">
-            <span className="font-semibold text-secondary text-6xl leading-none head">
+        <div className="mt-9 flex items-center justify-between gap-8">
+          <div className="head flex items-end gap-3 tracking-widest">
+            <span className="text-5xl font-semibold leading-none text-secondary">
               {formatSlideNumber(currentSlide)}
             </span>
-            <span className="pb-2 text-muted-foreground text-3xl">/</span>
-            <span className="pb-2 text-muted-foreground text-3xl">
-              {formatSlideNumber(slideCount)}
+            <span className="pb-1 text-3xl text-[#d7cfbd]/65">
+              / {formatSlideNumber(slideCount)}
             </span>
           </div>
-          <div className="hidden lg:flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <button
               type="button"
               aria-label="Previous artwork"
-              className="place-items-center grid bg-primary/30 border border-white/10 hover:border-secondary size-14 text-secondary transition-colors cursor-pointer"
+              className="grid size-14 cursor-pointer place-items-center rounded-full border border-[#d7cfbd]/35 text-[#f7f3ea] transition-colors hover:border-secondary hover:text-secondary"
               onClick={onPreviousSlide}
             >
-              <ChevronLeft className="size-5" strokeWidth={1.7} />
+              <ChevronLeft className="size-5" strokeWidth={1.8} />
             </button>
             <button
               type="button"
               aria-label="Next artwork"
-              className="place-items-center grid bg-primary/30 border border-white/10 hover:border-secondary size-14 text-secondary transition-colors cursor-pointer"
+              className="grid size-14 cursor-pointer place-items-center rounded-full border border-[#d7cfbd]/35 text-[#f7f3ea] transition-colors hover:border-secondary hover:text-secondary"
               onClick={onNextSlide}
             >
-              <ChevronRight className="size-5" strokeWidth={1.7} />
+              <ChevronRight className="size-5" strokeWidth={1.8} />
             </button>
           </div>
         </div>

@@ -39,7 +39,7 @@ const contactDetails = [
 
 export default function Contact() {
   return (
-    <section className="relative min-h-[calc(100svh-90px)] overflow-hidden bg-[#080809] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
+    <section className="relative min-h-[calc(100svh-90px)] overflow-hidden bg-background px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_83%_40%,rgba(201,154,61,0.12),transparent_28%),radial-gradient(circle_at_14%_68%,rgba(201,154,61,0.08),transparent_24%)]" />
       <div className="absolute inset-x-0 bottom-0 h-40 opacity-20 [background:repeating-radial-gradient(ellipse_at_bottom_left,transparent_0,transparent_18px,rgba(247,243,234,0.25)_19px,transparent_20px)]" />
 
@@ -78,7 +78,7 @@ export default function Contact() {
               type="text"
               name="name"
               placeholder="e.g. Alex Morgan"
-              className="mt-3 h-16 w-full border border-white/15 bg-black/20 px-6 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-secondary"
+              className="mt-3 h-16 w-full border border-border bg-card/40 px-6 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-secondary"
             />
           </label>
 
@@ -90,7 +90,7 @@ export default function Contact() {
               type="email"
               name="email"
               placeholder="e.g. alex@morgan.com"
-              className="mt-3 h-16 w-full border border-white/15 bg-black/20 px-6 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-secondary"
+              className="mt-3 h-16 w-full border border-border bg-card/40 px-6 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-secondary"
             />
           </label>
 
@@ -101,7 +101,7 @@ export default function Contact() {
             <select
               name="projectType"
               defaultValue=""
-              className="mt-3 h-16 w-full border border-white/15 bg-black/20 px-6 text-base text-muted-foreground outline-none transition-colors focus:border-secondary"
+              className="mt-3 h-16 w-full border border-border bg-card/40 px-6 text-base text-muted-foreground outline-none transition-colors focus:border-secondary"
             >
               <option value="" disabled>
                 Select project type
@@ -120,7 +120,7 @@ export default function Contact() {
             <textarea
               name="message"
               placeholder="Share your ideas, vision, size, timeline, budget, or anything else that helps bring your concept to life..."
-              className="mt-3 min-h-48 w-full resize-none border border-white/15 bg-black/20 px-6 py-5 text-base leading-7 text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-secondary"
+              className="mt-3 min-h-48 w-full resize-none border border-border bg-card/40 px-6 py-5 text-base leading-7 text-foreground outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-secondary"
             />
           </label>
 
@@ -142,8 +142,8 @@ export default function Contact() {
           </p>
         </form>
 
-        <aside className="border-white/10 lg:border-l lg:pl-10">
-          <div className="overflow-hidden border border-white/10">
+        <aside className="border-border lg:border-l lg:pl-10">
+          <div className="overflow-hidden border border-border">
             <img
               src={contactArtwork.src}
               alt={contactArtwork.alt}

@@ -75,29 +75,26 @@ export default function HeroMobile() {
   }, [api, handleSelect])
 
   return (
-    <section className="relative bg-[#0b0b0d] px-3 pt-6 pb-5 min-h-[calc(100svh-90px)] overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_32%,rgba(201,154,61,0.1),transparent_36%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_30%)]" />
+    <section className="relative min-h-[calc(100svh-90px)] overflow-hidden bg-background px-4 pb-6 pt-5">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(201,154,61,0.2),transparent_34%),linear-gradient(180deg,rgba(11,11,13,0.82)_0%,rgba(11,11,13,0.58)_52%,rgba(11,11,13,0.82)_100%)]" />
 
-      <div className="relative flex flex-col justify-center mx-auto max-w-[420px] min-h-[calc(100svh-121px)]">
-        <p className="font-semibold text-muted-foreground text-sm text-center">
+      <div className="relative mx-auto flex min-h-[calc(100svh-121px)] max-w-[460px] flex-col justify-center">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.22em] text-secondary">
           Artist • Sculptor • Designer
         </p>
 
-        <h1 className="mx-auto mt-4 max-w-[360px] md:max-w-[560px] font-semibold text-[2.35rem] text-foreground text-center leading-[0.96] head">
+        <h1 className="head mx-auto mt-4 max-w-[390px] text-center text-[2.85rem] font-semibold leading-[0.98] text-[#f7f3ea]">
           Creating Art That Transcends Canvas, Space and Time
           <span className="text-secondary">.</span>
         </h1>
 
-        <div className="flex justify-center items-center gap-4 mt-6">
-          <div className="items-center grid grid-cols-[2.4rem_0.9rem_2.4rem] text-center">
-            <span className="font-semibold text-secondary text-3xl leading-none head">
+        <div className="mt-6 flex items-center justify-between gap-4">
+          <div className="head flex items-end gap-2 tracking-widest">
+            <span className="text-4xl font-semibold leading-none text-secondary">
               {formatSlideNumber(currentSlide)}
             </span>
-            <span className="text-muted-foreground text-2xl leading-none">
-              /
-            </span>
-            <span className="text-muted-foreground text-2xl leading-none">
-              {formatSlideNumber(slideCount)}
+            <span className="pb-1 text-2xl leading-none text-[#d7cfbd]/70">
+              / {formatSlideNumber(slideCount)}
             </span>
           </div>
 
@@ -105,53 +102,73 @@ export default function HeroMobile() {
             <button
               type="button"
               aria-label="Previous artwork"
-              className="place-items-center grid bg-primary/35 border border-white/10 hover:border-secondary size-11 text-secondary transition-colors"
+              className="grid size-12 place-items-center rounded-full border border-[#d7cfbd]/35 text-[#f7f3ea] transition-colors hover:border-secondary hover:text-secondary"
               onClick={() => carouselApiRef.current?.scrollPrev()}
             >
-              <ChevronLeft className="size-4" strokeWidth={1.7} />
+              <ChevronLeft className="size-5" strokeWidth={1.8} />
             </button>
             <button
               type="button"
               aria-label="Next artwork"
-              className="place-items-center grid bg-primary/35 border border-white/10 hover:border-secondary size-11 text-secondary transition-colors"
+              className="grid size-12 place-items-center rounded-full border border-[#d7cfbd]/35 text-[#f7f3ea] transition-colors hover:border-secondary hover:text-secondary"
               onClick={() => carouselApiRef.current?.scrollNext()}
             >
-              <ChevronRight className="size-4" strokeWidth={1.7} />
+              <ChevronRight className="size-5" strokeWidth={1.8} />
             </button>
           </div>
         </div>
 
         <div
-          className="mt-6 border border-white/15 rounded overflow-hidden"
+          className="mt-5 overflow-hidden rounded-xl bg-[#1a1a1f]/70 p-2 shadow-2xl"
           ref={carouselRef}
         >
           <div className="flex">
             {heroArtworks.map((artwork) => (
               <div className="flex-[0_0_100%] min-w-0" key={artwork.src}>
-                <img
-                  src={artwork.src}
-                  alt={artwork.alt}
-                  className="brightness-110 saturate-110 w-full object-cover aspect-[1.12/1] contrast-105"
-                />
+                <Link
+                  to={`/artworks/${artwork.slug}`}
+                  className="relative block overflow-hidden rounded-lg"
+                  aria-label={`View ${artwork.title}`}
+                >
+                  <img
+                    src={artwork.src}
+                    alt={artwork.alt}
+                    className="aspect-[1.08/1] w-full object-cover brightness-110 contrast-105 saturate-110"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent" />
+                  <div className="absolute inset-x-3 bottom-3 flex items-center justify-between gap-3 rounded-lg bg-black/50 p-3 text-white backdrop-blur-md">
+                    <div className="min-w-0">
+                      <h2 className="head truncate text-base font-medium">
+                        {artwork.title}
+                      </h2>
+                      <p className="mt-1 truncate text-xs text-white/70">
+                        {artwork.medium}
+                      </p>
+                    </div>
+                    <span className="shrink-0 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-[#1a1a1f]">
+                      Featured
+                    </span>
+                  </div>
+                </Link>
               </div>
             ))}
           </div>
         </div>
 
-        <p className="mx-auto mt-5 max-w-[340px] font-medium text-muted-foreground text-sm text-center leading-7">
+        <p className="mx-auto mt-5 max-w-[370px] text-center text-sm font-light leading-7 text-[#d7cfbd]">
           Exploring African creativity through painting, sculpture, public art,
           and cultural projects shaped by a distinct visual language.
         </p>
 
         <Link
           to="/artworks"
-          className="inline-flex justify-center items-center gap-3 mt-5 px-6 border border-secondary/80 hover:border-secondary h-12 font-semibold text-foreground hover:text-secondary text-sm transition-colors"
+          className="mx-auto mt-5 inline-flex h-13 items-center justify-center gap-4 rounded-full border border-secondary/80 px-7 text-xs font-semibold uppercase tracking-[0.18em] text-[#f7f3ea] transition-all hover:border-secondary hover:bg-secondary hover:text-[#1a1a1f]"
         >
           View Artworks
-          <ArrowRight className="size-5 text-secondary" strokeWidth={1.6} />
+          <ArrowRight className="size-5" strokeWidth={1.7} />
         </Link>
 
-        <div className="flex justify-center items-center gap-5 mt-5 pt-4 border-white/10 border-t">
+        <div className="mt-5 flex items-center justify-center gap-5 border-t border-[#d7cfbd]/20 pt-4">
           {socialLinks.map((item) => {
             const Icon = item.icon
 
@@ -160,7 +177,7 @@ export default function HeroMobile() {
                 key={item.label}
                 href={item.href}
                 aria-label={item.label}
-                className="place-items-center grid size-9 md:size-12 text-muted-foreground hover:text-secondary transition-colors"
+                className="grid size-9 place-items-center text-[#d7cfbd] transition-colors hover:text-secondary md:size-12"
                 target="_blank"
                 rel="noreferrer"
               >

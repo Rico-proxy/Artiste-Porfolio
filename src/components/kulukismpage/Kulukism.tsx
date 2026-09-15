@@ -9,7 +9,7 @@ const principles = [
 
 export default function Kulukism() {
   return (
-    <section className="bg-[#080809] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
+    <section className="bg-background px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
       <div className="mx-auto max-w-[1440px]">
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1fr] lg:items-center">
           <div>
@@ -26,7 +26,7 @@ export default function Kulukism() {
               identity, endurance, and African imagination.
             </p>
           </div>
-          <div className="overflow-hidden border border-white/10">
+          <div className="overflow-hidden border border-border">
             <img
               src={artworks[0].src}
               alt={artworks[0].alt}
@@ -37,7 +37,7 @@ export default function Kulukism() {
 
         <div className="mt-14 grid gap-5 md:grid-cols-4">
           {principles.map((principle, index) => (
-            <article key={principle} className="border border-white/10 p-6">
+            <article key={principle} className="border border-border p-6">
               <p className="head text-5xl text-secondary">
                 {(index + 1).toString().padStart(2, "0")}
               </p>
@@ -61,7 +61,7 @@ export default function Kulukism() {
               text: "KULUKISM pieces may appear as paintings, sculptural forms, architectural surfaces, or civic installations.",
             },
           ].map((item) => (
-            <article key={item.title} className="border-t border-white/10 pt-6">
+            <article key={item.title} className="border-t border-border pt-6">
               <h2 className="head text-4xl font-medium text-foreground">
                 {item.title}
               </h2>

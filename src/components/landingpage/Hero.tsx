@@ -45,18 +45,18 @@ const Hero = () => {
       <div className="lg:hidden">
         <HeroMobile />
       </div>
-      <section className="relative hidden min-h-[calc(100svh-90px)] overflow-hidden bg-[#0b0b0d] lg:block">
+      <section className="relative hidden min-h-[calc(100svh-90px)] overflow-hidden bg-background lg:block">
         <HeroNeatBackground />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_46%,rgba(240,184,79,0.2),transparent_32%),linear-gradient(90deg,rgba(11,11,13,0.9)_0%,rgba(11,11,13,0.48)_48%,rgba(11,11,13,0.72)_100%)]" />
-        <div className="relative grid min-h-[calc(100svh-90px)] grid-cols-[116px_minmax(0,0.78fr)_minmax(420px,1.22fr)]">
-          <HeroSocialRail />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_46%,rgba(240,184,79,0.18),transparent_32%),linear-gradient(90deg,rgba(11,11,13,0.74)_0%,rgba(11,11,13,0.38)_48%,rgba(11,11,13,0.62)_100%)] dark:bg-[radial-gradient(circle_at_72%_46%,rgba(240,184,79,0.2),transparent_32%),linear-gradient(90deg,rgba(11,11,13,0.9)_0%,rgba(11,11,13,0.48)_48%,rgba(11,11,13,0.72)_100%)]" />
+        <HeroSocialRail />
+        <div className="relative mx-auto grid min-h-[calc(100svh-90px)] w-full max-w-7xl grid-cols-11 items-center gap-10 px-5 py-10 pl-[136px] md:px-8 md:pl-[148px] xl:gap-16">
           <HeroIntro
             currentSlide={currentSlide}
             onNextSlide={scrollNext}
             onPreviousSlide={scrollPrevious}
             slideCount={slideCount}
           />
-          <div className="relative">
+          <div className="relative col-span-6">
             <HeroArtwork
               artworks={heroArtworks}
               onApiReady={setCarouselApi}

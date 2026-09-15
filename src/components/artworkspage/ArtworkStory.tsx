@@ -22,7 +22,7 @@ export default function ArtworkStory() {
   ]
 
   return (
-    <section className="min-h-[calc(100svh-90px)] bg-[#080809] px-6 py-10 sm:px-10 lg:px-14 lg:py-14">
+    <section className="min-h-[calc(100svh-90px)] bg-background px-6 py-10 sm:px-10 lg:px-14 lg:py-14">
       <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-[minmax(0,1fr)_420px]">
         <div>
           <Link
@@ -37,7 +37,7 @@ export default function ArtworkStory() {
             <span className="block">{artwork.title}</span>
           </h1>
 
-          <div className="mt-8 max-w-[760px] overflow-hidden border border-white/10 bg-black/40">
+          <div className="mt-8 max-w-[760px] overflow-hidden border border-border bg-card/60">
             <img
               src={artwork.src}
               alt={artwork.alt}
@@ -50,7 +50,7 @@ export default function ArtworkStory() {
               <Link
                 key={view.slug}
                 to={`/artworks/${view.slug}`}
-                className="group block overflow-hidden border border-white/10"
+                className="group block overflow-hidden border border-border"
               >
                 <img
                   src={view.src}
@@ -62,15 +62,15 @@ export default function ArtworkStory() {
           </div>
         </div>
 
-        <aside className="self-start border-l border-white/10 pl-0 lg:pl-8">
-          <div className="border-l border-white/10 pl-8 lg:border-l-0 lg:pl-0">
+        <aside className="self-start border-l border-border pl-0 lg:pl-8">
+          <div className="border-l border-border pl-8 lg:border-l-0 lg:pl-0">
             <p className="text-lg text-secondary">Art is not what you see,</p>
             <p className="accent mt-2 text-3xl text-secondary">
               but what you make others feel.
             </p>
           </div>
 
-          <div className="mt-10 divide-y divide-white/10 border-y border-white/10">
+          <div className="mt-10 divide-y divide-white/10 border-y border-border">
             <div className="py-5">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-secondary">
                 Title:

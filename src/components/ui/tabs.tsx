@@ -27,7 +27,7 @@ function TabsList({
     <TabsPrimitive.List
       data-slot="tabs-list"
       className={cn(
-        "flex items-center gap-4 overflow-x-auto border-b border-white/10 text-sm uppercase tracking-[0.18em] text-muted-foreground",
+        "flex items-center gap-4 overflow-x-auto border-b border-border text-sm uppercase tracking-[0.18em] text-muted-foreground",
         variant === "line" && "gap-8",
         className
       )}

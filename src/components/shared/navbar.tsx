@@ -2,6 +2,7 @@ import { Menu } from "lucide-react"
 import { useState } from "react"
 import { Link, NavLink } from "react-router-dom"
 
+import ThemeToggle from "@/components/shared/theme-toggle"
 import {
   Sheet,
   SheetContent,
@@ -20,6 +21,7 @@ const mainNavItems = [
   { label: "UAL Studios", to: "/ual-studios" },
   { label: "Exhibitions", to: "/exhibitions" },
   { label: "Press", to: "/press" },
+  { label: "Dashboard", to: "/dashboard" },
 ]
 
 const contactNavItem = { label: "Contact", to: "/contact" }
@@ -28,18 +30,18 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="border-b border-white/5 bg-black">
-      <div className="mx-5">
-        <nav className="mx-auto flex h-20 w-full items-center justify-between px-4 md:h-[90px] md:px-8 xl:px-14">
+    <header className="relative z-50 border-b border-border bg-background">
+      <div className="mx-auto w-full max-w-7xl px-6 md:px-12">
+        <nav className="flex h-20 w-full items-center justify-between md:h-[88px]">
           <Link
             to="/"
-            className="head text-2xl font-semibold uppercase tracking-[0.42em] text-foreground md:text-3xl"
+            className="head text-2xl font-bold uppercase tracking-[0.28em] text-foreground md:text-3xl"
             aria-label="Akeni home"
           >
             AKENI<span className="text-secondary">.</span>
           </Link>
 
-          <div className="hidden items-center gap-3 lg:flex xl:gap-5 2xl:gap-8">
+          <div className="hidden items-center gap-6 lg:flex xl:gap-7">
             {mainNavItems.map((item) => (
               <NavLink
                 key={item.to}
@@ -47,7 +49,7 @@ export default function Navbar() {
                 end={item.to === "/"}
                 className={({ isActive }) =>
                   [
-                    "relative py-2 text-xs font-medium transition-colors xl:text-sm",
+                    "relative py-2 text-sm font-medium tracking-wide transition-colors",
                     isActive
                       ? "text-secondary"
                       : "text-muted-foreground hover:text-foreground",
@@ -69,56 +71,61 @@ export default function Navbar() {
               to={contactNavItem.to}
               className={({ isActive }) =>
                 [
-                  "border px-3 py-2.5 text-xs font-medium transition-colors xl:px-5 xl:py-3 xl:text-sm",
+                  "rounded-full border px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] transition-all",
                   isActive
-                    ? "border-secondary text-secondary"
-                    : "border-secondary/70 text-foreground hover:border-secondary hover:text-secondary",
+                    ? "border-secondary bg-secondary text-secondary-foreground"
+                    : "border-secondary/60 text-foreground hover:border-secondary hover:bg-secondary hover:text-secondary-foreground",
                 ].join(" ")
               }
             >
               {contactNavItem.label}
             </NavLink>
+            <ThemeToggle />
           </div>
 
-          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-            <SheetTrigger
-              aria-label="Open navigation menu"
-              className="grid size-11 place-items-center border border-secondary/70 text-secondary transition-colors hover:border-secondary hover:text-foreground lg:hidden"
-            >
-              <Menu className="size-6" strokeWidth={1.7} />
-            </SheetTrigger>
-            <SheetContent side="right" className="flex flex-col">
-              <SheetHeader className="pr-10">
-                <SheetTitle>
-                  AKENI<span className="text-secondary">.</span>
-                </SheetTitle>
-                <SheetDescription>
-                  Prince Akeni Prosper studio navigation.
-                </SheetDescription>
-              </SheetHeader>
+          <div className="flex items-center gap-3 lg:hidden">
+            <ThemeToggle />
 
-              <div className="mt-12 flex flex-col gap-1">
-                {[...mainNavItems, contactNavItem].map((item) => (
-                  <NavLink
-                    key={item.to}
-                    to={item.to}
-                    end={item.to === "/"}
-                    className={({ isActive }) =>
-                      [
-                        "block border-b border-white/10 py-4 text-lg font-medium transition-colors",
-                        isActive
-                          ? "text-secondary"
-                          : "text-muted-foreground hover:text-foreground",
-                      ].join(" ")
-                    }
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </NavLink>
-                ))}
-              </div>
-            </SheetContent>
-          </Sheet>
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+              <SheetTrigger
+                aria-label="Open navigation menu"
+                className="grid size-11 place-items-center rounded-full bg-foreground/5 text-foreground transition-colors hover:bg-foreground/10 hover:text-secondary"
+              >
+                <Menu className="size-6" strokeWidth={1.7} />
+              </SheetTrigger>
+              <SheetContent side="right" className="flex flex-col">
+                <SheetHeader className="pr-10">
+                  <SheetTitle>
+                    AKENI<span className="text-secondary">.</span>
+                  </SheetTitle>
+                  <SheetDescription>
+                    Prince Akeni Prosper studio navigation.
+                  </SheetDescription>
+                </SheetHeader>
+
+                <div className="mt-12 flex flex-col gap-1">
+                  {[...mainNavItems, contactNavItem].map((item) => (
+                    <NavLink
+                      key={item.to}
+                      to={item.to}
+                      end={item.to === "/"}
+                      className={({ isActive }) =>
+                        [
+                          "block border-b border-border py-4 text-lg font-medium transition-colors",
+                          isActive
+                            ? "text-secondary"
+                            : "text-muted-foreground hover:text-foreground",
+                        ].join(" ")
+                      }
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.label}
+                    </NavLink>
+                  ))}
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </nav>
       </div>
     </header>

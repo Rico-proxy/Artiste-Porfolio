@@ -14,7 +14,7 @@ export default function PixelImage({ artwork, className }: PixelImageProps) {
     <Link
       to={`/artworks/${artwork.slug}`}
       className={cn(
-        "group block overflow-hidden border border-white/10 bg-black/40",
+        "group block overflow-hidden border border-border bg-card/60",
         className
       )}
     >

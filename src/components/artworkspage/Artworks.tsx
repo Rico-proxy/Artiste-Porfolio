@@ -73,9 +73,9 @@ export default function Artworks() {
   }
 
   return (
-    <section className="min-h-[calc(100svh-90px)] bg-[#080809] px-6 py-10 sm:px-10 lg:px-14 lg:py-14">
+    <section className="min-h-[calc(100svh-90px)] bg-background px-6 py-10 sm:px-10 lg:px-14 lg:py-14">
       <div className="mx-auto max-w-[1440px]">
-        <div className="grid gap-8 border-b border-white/10 pb-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-end">
+        <div className="grid gap-8 border-b border-border pb-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-end">
           <div>
             <h1 className="head text-6xl font-medium leading-none text-foreground md:text-7xl lg:text-8xl">
               Artworks
@@ -85,7 +85,7 @@ export default function Artworks() {
               and contemporary collections by Prince Akeni Prosper.
             </p>
           </div>
-          <div className="border-l border-white/10 pl-8">
+          <div className="border-l border-border pl-8">
             <p className="text-lg text-secondary">Art is not what you see,</p>
             <p className="accent mt-2 text-3xl text-secondary">
               but what you make others feel.
@@ -95,12 +95,12 @@ export default function Artworks() {
 
         <div className="mt-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <Tabs defaultValue="all" className="w-full">
-            <div className="flex flex-col gap-6 border-b border-white/10 pb-2 xl:flex-row xl:items-end xl:justify-between">
+            <div className="flex flex-col gap-6 border-b border-border pb-2 xl:flex-row xl:items-end xl:justify-between">
               <div className="flex min-w-0 items-center gap-3">
                 <button
                   type="button"
                   aria-label="Scroll categories left"
-                  className="grid size-10 shrink-0 place-items-center border border-white/10 text-secondary transition-colors hover:border-secondary hover:text-foreground"
+                  className="grid size-10 shrink-0 place-items-center border border-border text-secondary transition-colors hover:border-secondary hover:text-foreground"
                   onClick={() => scrollTabs("left")}
                 >
                   <ChevronLeft className="size-5" strokeWidth={1.7} />
@@ -122,7 +122,7 @@ export default function Artworks() {
                 <button
                   type="button"
                   aria-label="Scroll categories right"
-                  className="grid size-10 shrink-0 place-items-center border border-white/10 text-secondary transition-colors hover:border-secondary hover:text-foreground"
+                  className="grid size-10 shrink-0 place-items-center border border-border text-secondary transition-colors hover:border-secondary hover:text-foreground"
                   onClick={() => scrollTabs("right")}
                 >
                   <ChevronRight className="size-5" strokeWidth={1.7} />
@@ -130,11 +130,11 @@ export default function Artworks() {
               </div>
 
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-                <label className="flex h-12 min-w-0 items-center gap-3 border border-white/10 px-4 text-muted-foreground sm:w-80">
+                <label className="flex h-12 min-w-0 items-center gap-3 border border-border px-4 text-muted-foreground sm:w-80">
                   <Search className="size-5 shrink-0" strokeWidth={1.6} />
                   <span className="text-sm">Search artwork...</span>
                 </label>
-                <div className="flex h-12 items-center gap-12 border-l border-white/10 pl-6 text-sm text-muted-foreground">
+                <div className="flex h-12 items-center gap-12 border-l border-border pl-6 text-sm text-muted-foreground">
                   <span>Sort by</span>
                   <span className="text-foreground">Newest</span>
                 </div>

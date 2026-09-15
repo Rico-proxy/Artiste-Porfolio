@@ -5,6 +5,7 @@ import AboutPage from "@/pages/AboutPage"
 import ArtworkPage from "@/pages/ArtworkPage"
 import ArtworksPage from "@/pages/ArtworksPage"
 import ContactPage from "@/pages/ContactPage"
+import DashboardPage from "@/pages/DashboardPage"
 import ExhibitionsPage from "@/pages/ExhibitionsPage"
 import KulukismPage from "@/pages/KulukismPage"
 import LandingPage from "@/pages/LandingPage"
@@ -16,6 +17,7 @@ import UalStudiosPage from "@/pages/UalStudiosPage"
 export function App() {
   return (
     <Routes>
+      <Route path="dashboard/*" element={<DashboardPage />} />
       <Route element={<BaseLayout />}>
         <Route index element={<LandingPage />} />
         <Route path="about" element={<AboutPage />} />

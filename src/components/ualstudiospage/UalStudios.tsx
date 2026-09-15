@@ -25,7 +25,7 @@ const services = [
 
 export default function UalStudios() {
   return (
-    <section className="bg-[#080809] px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
+    <section className="bg-background px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
       <div className="mx-auto max-w-[1440px]">
         <div className="max-w-4xl">
           <p className="text-sm font-medium uppercase tracking-[0.18em] text-secondary">
@@ -47,7 +47,7 @@ export default function UalStudios() {
             const Icon = service.icon
 
             return (
-              <article key={service.title} className="border border-white/10 p-7">
+              <article key={service.title} className="border border-border p-7">
                 <Icon className="size-8 text-secondary" strokeWidth={1.5} />
                 <h2 className="head mt-8 text-3xl font-medium text-foreground">
                   {service.title}
@@ -60,7 +60,7 @@ export default function UalStudios() {
           })}
         </div>
 
-        <div className="mt-14 grid gap-6 border-y border-white/10 py-10 md:grid-cols-3">
+        <div className="mt-14 grid gap-6 border-y border-border py-10 md:grid-cols-3">
           {["Concept Development", "Fabrication Direction", "Installation Planning"].map(
             (step) => (
               <p key={step} className="text-lg text-foreground">

@@ -2,8 +2,8 @@ import { Camera, CircleDot } from "lucide-react"
 
 export default function HeroSocialRail() {
   return (
-    <aside className="hidden bg-black/70 px-8 py-16 backdrop-blur-sm lg:flex lg:flex-col lg:items-center lg:justify-center">
-      <div className="flex flex-col items-center gap-9 text-muted-foreground">
+    <aside className="absolute inset-y-0 left-0 z-20 hidden w-[116px] flex-col items-center justify-center bg-black/75 px-8 backdrop-blur-sm lg:flex">
+      <div className="flex flex-col items-center gap-8 text-[#d7cfbd]">
         <a
           href="/"
           aria-label="Instagram"
@@ -26,7 +26,7 @@ export default function HeroSocialRail() {
           <CircleDot className="size-6" strokeWidth={1.8} />
         </a>
       </div>
-      <span className="bg-muted-foreground/35 mt-12 w-px h-28" />
+      <span className="mt-12 h-32 w-px bg-[#d7cfbd]/35" />
     </aside>
   )
 }
