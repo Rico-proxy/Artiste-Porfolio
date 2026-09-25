@@ -92,7 +92,7 @@ export default function Navbar() {
               >
                 <Menu className="size-6" strokeWidth={1.7} />
               </SheetTrigger>
-              <SheetContent side="right" className="flex flex-col">
+              <SheetContent side="right" className="flex flex-col overflow-hidden">
                 <SheetHeader className="pr-10">
                   <SheetTitle>
                     AKENI<span className="text-secondary">.</span>
@@ -102,7 +102,7 @@ export default function Navbar() {
                   </SheetDescription>
                 </SheetHeader>
 
-                <div className="mt-12 flex flex-col gap-1">
+                <div className="mt-12 min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-contain pr-1 pb-8">
                   {[...mainNavItems, contactNavItem].map((item) => (
                     <NavLink
                       key={item.to}
