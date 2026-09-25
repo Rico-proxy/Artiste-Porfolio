@@ -1,5 +1,6 @@
 import { Lightbulb, Menu } from "lucide-react"
 import { useTour } from "@reactour/tour"
+import { useState } from "react"
 
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar"
 import ThemeToggle from "@/components/shared/theme-toggle"
@@ -14,7 +15,12 @@ import {
 } from "@/components/ui/sheet"
 
 export default function DashboardNavbar() {
-  const { setCurrentStep, setIsOpen } = useTour()
+  const { currentStep, isOpen: isTourOpen, setCurrentStep, setIsOpen } = useTour()
+  const [manualMobileNavOpen, setManualMobileNavOpen] = useState(false)
+  const isMobile = window.matchMedia("(max-width: 1023px)").matches
+  const isSidebarTourStep = currentStep >= 1 && currentStep <= 5
+  const mobileNavOpen =
+    isMobile && isTourOpen ? isSidebarTourStep : manualMobileNavOpen
 
   return (
     <header
@@ -23,12 +29,12 @@ export default function DashboardNavbar() {
     >
       <div className="flex h-16 items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
-          <Sheet>
-            <SheetTrigger
-              aria-label="Open dashboard sidebar"
-              className="grid size-10 place-items-center border border-border text-foreground transition-colors hover:border-secondary hover:text-secondary lg:hidden"
-            >
-              <Menu className="size-5" strokeWidth={1.8} />
+            <Sheet open={mobileNavOpen} onOpenChange={setManualMobileNavOpen}>
+              <SheetTrigger
+                aria-label="Open dashboard sidebar"
+                className="grid size-12 place-items-center border border-border text-foreground transition-colors hover:border-secondary hover:text-secondary lg:hidden"
+              >
+              <Menu className="size-6" strokeWidth={1.8} />
             </SheetTrigger>
             <SheetContent
               side="left"
@@ -41,10 +47,10 @@ export default function DashboardNavbar() {
                   Navigate between dashboard sections.
                 </SheetDescription>
               </SheetHeader>
-              <DashboardSidebar />
+              <DashboardSidebar onNavigate={() => setManualMobileNavOpen(false)} />
             </SheetContent>
           </Sheet>
-          <div>
+          <div className="hidden sm:block">
             <p className="text-xs font-semibold tracking-[0.18em] text-secondary uppercase">
               Dashboard
             </p>
