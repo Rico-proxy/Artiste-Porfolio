@@ -1,8 +1,7 @@
 import { Award, BookOpen, GraduationCap } from "lucide-react"
 
-import { artworks } from "@/data"
-
-const profileArtwork = artworks[0]
+import { useSiteContent } from "@/components/site-content-provider"
+import { useArtworkData } from "@/components/dashboard/artwork-data-provider"
 
 const milestones = [
   {
@@ -23,48 +22,53 @@ const milestones = [
 ]
 
 export default function About() {
+  const { content } = useSiteContent()
+  const { artworks } = useArtworkData()
+  const profileArtwork = artworks[0]
+
   return (
-    <section className="bg-background px-6 sm:px-10 lg:px-14 py-12 lg:py-16">
+    <section className="bg-background px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
       <div className="mx-auto max-w-[1440px]">
-        <div className="lg:items-end gap-12 grid lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
-            <p className="font-medium text-secondary text-sm uppercase tracking-[0.18em]">
-              About The Artist
+            <p className="text-sm font-medium tracking-[0.18em] text-secondary uppercase">
+              {content.about.eyebrow}
             </p>
-            <span className="mt-5 w-20 line" />
-            <h1 className="mt-8 max-w-4xl font-medium text-foreground text-6xl md:text-8xl leading-none head">
-              Prince Akeni Prosper
+            <span className="line mt-5 w-20" />
+            <h1 className="head mt-8 max-w-4xl text-6xl leading-none font-medium text-foreground md:text-8xl">
+              {content.about.title}
               <span className="text-secondary">.</span>
             </h1>
           </div>
-          <p className="max-w-2xl text-muted-foreground text-lg leading-8">
-            Artist, sculptor, designer, and creative director creating art that
-            transcends canvas, space, and time through a distinctly personal
-            African visual language.
+          <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
+            {content.about.summary}
           </p>
         </div>
 
-        <div className="gap-10 grid lg:grid-cols-[0.8fr_1fr] mt-14">
+        <div className="mt-14 grid gap-10 lg:grid-cols-[0.8fr_1fr]">
           <div className="overflow-hidden">
             <img
               src={profileArtwork.src}
               alt={profileArtwork.alt}
-              className="w-full object-cover aspect-[4/5]"
+              className="aspect-[4/5] w-full object-cover"
             />
           </div>
 
           <div>
-            <div className="gap-4 grid sm:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-3">
               {milestones.map((item) => {
                 const Icon = item.icon
 
                 return (
-                  <article key={item.label} className="p-5 border border-border">
+                  <article
+                    key={item.label}
+                    className="border border-border p-5"
+                  >
                     <Icon className="size-7 text-secondary" strokeWidth={1.5} />
-                    <p className="mt-5 font-semibold text-secondary text-xs uppercase tracking-[0.18em]">
+                    <p className="mt-5 text-xs font-semibold tracking-[0.18em] text-secondary uppercase">
                       {item.label}
                     </p>
-                    <p className="mt-3 text-muted-foreground text-sm leading-6">
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
                       {item.title}
                     </p>
                   </article>
@@ -72,43 +76,39 @@ export default function About() {
               })}
             </div>
 
-            <div className="gap-8 grid md:grid-cols-2 mt-10 py-10 border-border border-y">
+            <div className="mt-10 grid gap-8 border-y border-border py-10 md:grid-cols-2">
               <div>
-                <h2 className="font-medium text-foreground text-4xl head">
-                  Biography
+                <h2 className="head text-4xl font-medium text-foreground">
+                  {content.about.biographyTitle}
                 </h2>
-                <p className="mt-5 text-muted-foreground text-base leading-8">
-                  Prince Akeni Prosper builds a practice across painting,
-                  sculpture, public art, architectural surfaces, and cultural
-                  identity projects. His work moves between intimate studio
-                  pieces and large-scale commissions, carrying a visual language
-                  rooted in memory, material, and place.
+                <p className="mt-5 text-base leading-8 text-muted-foreground">
+                  {content.about.biography}
                 </p>
               </div>
               <div>
-                <h2 className="font-medium text-foreground text-4xl head">
-                  Artistic Philosophy
+                <h2 className="head text-4xl font-medium text-foreground">
+                  {content.about.philosophyTitle}
                 </h2>
-                <p className="mt-5 text-muted-foreground text-base leading-8">
-                  His philosophy centers on transformation: ordinary materials,
-                  civic spaces, and inherited symbols become charged surfaces
-                  for reflection. The work asks how African creativity can
-                  occupy contemporary space with authority, beauty, and depth.
+                <p className="mt-5 text-base leading-8 text-muted-foreground">
+                  {content.about.philosophy}
                 </p>
               </div>
             </div>
 
             <div className="mt-10">
-              <h2 className="font-medium text-foreground text-4xl head">
+              <h2 className="head text-4xl font-medium text-foreground">
                 Awards & Recognition
               </h2>
-              <div className="mt-6 border-border border-y divide-y divide-white/10">
+              <div className="mt-6 divide-y divide-white/10 border-y border-border">
                 {[
                   "Selected for regional public art beautification projects",
                   "Commissioned for institutional sculpture and identity work",
                   "Featured in cultural exhibitions and studio showcases",
                 ].map((item) => (
-                  <p key={item} className="py-4 text-muted-foreground text-base">
+                  <p
+                    key={item}
+                    className="py-4 text-base text-muted-foreground"
+                  >
                     {item}
                   </p>
                 ))}

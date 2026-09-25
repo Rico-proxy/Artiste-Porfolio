@@ -2,6 +2,8 @@ import type { EmblaCarouselType } from "embla-carousel"
 import { useCallback, useEffect, useState } from "react"
 
 import { heroArtworks } from "@/assets/images"
+import { useArtworkData } from "@/components/dashboard/artwork-data-provider"
+import { useSiteContent } from "@/components/site-content-provider"
 import HeroArtwork from "@/components/landingpage/HeroArtwork"
 import HeroIntro from "@/components/landingpage/HeroIntro"
 import HeroMobile from "@/components/landingpage/HeroMobile"
@@ -9,9 +11,15 @@ import HeroNeatBackground from "@/components/landingpage/HeroNeatBackground"
 import HeroSocialRail from "@/components/landingpage/HeroSocialRail"
 
 const Hero = () => {
+  const { artworks, isLoading } = useArtworkData()
+  const { content } = useSiteContent()
   const [carouselApi, setCarouselApi] = useState<EmblaCarouselType>()
   const [currentSlide, setCurrentSlide] = useState(1)
-  const slideCount = heroArtworks.length
+  const featuredArtworks = content.hero.artworkSlugs
+    .map((slug) => artworks.find((artwork) => artwork.slug === slug))
+    .filter((artwork): artwork is (typeof artworks)[number] => Boolean(artwork))
+  const displayedArtworks = isLoading && featuredArtworks.length === 0 ? heroArtworks : featuredArtworks
+  const slideCount = displayedArtworks.length
 
   const handleSelect = useCallback((api: EmblaCarouselType) => {
     setCurrentSlide(api.selectedScrollSnap() + 1)
@@ -43,7 +51,7 @@ const Hero = () => {
   return (
     <>
       <div className="lg:hidden">
-        <HeroMobile />
+          <HeroMobile artworks={displayedArtworks} />
       </div>
       <section className="relative hidden min-h-[calc(100svh-90px)] overflow-hidden bg-background lg:block">
         <HeroNeatBackground />
@@ -58,7 +66,7 @@ const Hero = () => {
           />
           <div className="relative col-span-6">
             <HeroArtwork
-              artworks={heroArtworks}
+              artworks={displayedArtworks}
               onApiReady={setCarouselApi}
               onNextSlide={scrollNext}
               onPreviousSlide={scrollPrevious}

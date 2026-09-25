@@ -34,7 +34,7 @@ export type ArtworkCategory =
   | "collections"
 
 export type Artwork = {
-  id: number
+  id: number | string
   slug: string
   title: string
   year: string
@@ -47,6 +47,8 @@ export type Artwork = {
   excerpt: string
   story: string[]
   process: string[]
+  published?: boolean
+  imageKey?: string
 }
 
 export const artworkCategories: {

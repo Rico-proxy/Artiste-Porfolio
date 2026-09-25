@@ -3,66 +3,117 @@ import { useMemo, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 
 import PixelImage from "@/components/artworkspage/PixelImage"
+import { useArtworkData } from "@/components/dashboard/artwork-data-provider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
+import {
   artworkCategories,
-  getArtworksByCategory,
   type Artwork,
 } from "@/data"
 
-const INITIAL_VISIBLE_COUNT = 8
-const LOAD_STEP = 4
+const PAGE_SIZE = 10
 
 function ArtworksPanel({ works }: { works: Artwork[] }) {
-  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT)
-  const visibleWorks = works.slice(0, visibleCount)
-  const hasMore = visibleCount < works.length
+  const [page, setPage] = useState(1)
+  const pageCount = Math.max(1, Math.ceil(works.length / PAGE_SIZE))
+  const currentPage = Math.min(page, pageCount)
+  const visibleWorks = works.slice(
+    (currentPage - 1) * PAGE_SIZE,
+    currentPage * PAGE_SIZE
+  )
+
+  function getPageItems() {
+    if (pageCount <= 5) return Array.from({ length: pageCount }, (_, index) => index + 1)
+
+    if (currentPage <= 3) return [1, 2, 3, "ellipsis", pageCount] as const
+    if (currentPage >= pageCount - 2) {
+      return [1, "ellipsis", pageCount - 2, pageCount - 1, pageCount] as const
+    }
+    return [1, "ellipsis", currentPage, "ellipsis", pageCount] as const
+  }
 
   return (
     <div>
-      <div className="grid grid-cols-1 gap-x-4 gap-y-9 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {visibleWorks.map((artwork) => (
-          <article key={artwork.slug} className="min-w-0">
-            <PixelImage artwork={artwork} />
-            <Link
-              to={`/artworks/${artwork.slug}`}
-              className="mt-4 block text-sm font-semibold uppercase tracking-[0.08em] text-secondary transition-colors hover:text-foreground"
-            >
-              {artwork.title}, {artwork.year}
-            </Link>
-            <p className="mt-2 line-clamp-2 text-sm leading-6 text-muted-foreground">
-              {artwork.excerpt}
-            </p>
-          </article>
-        ))}
-      </div>
-
-      {hasMore ? (
-        <div className="mt-12 flex justify-center">
-          <button
-            type="button"
-            className="border border-secondary/70 px-8 py-3 text-sm font-medium text-secondary transition-colors hover:border-secondary hover:text-foreground"
-            onClick={() =>
-              setVisibleCount((count) => Math.min(count + LOAD_STEP, works.length))
-            }
-          >
-            Load More Works
-          </button>
+      {visibleWorks.length ? (
+        <div className="grid grid-cols-1 gap-x-4 gap-y-9 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {visibleWorks.map((artwork) => (
+            <article key={artwork.slug} className="min-w-0">
+              <PixelImage artwork={artwork} />
+              <Link
+                to={`/artworks/${artwork.slug}`}
+                className="mt-4 block text-sm font-semibold uppercase tracking-[0.08em] text-secondary transition-colors hover:text-foreground"
+              >
+                {artwork.title}, {artwork.year}
+              </Link>
+              <p className="mt-2 line-clamp-2 text-sm leading-6 text-muted-foreground">
+                {artwork.excerpt}
+              </p>
+            </article>
+          ))}
         </div>
+      ) : (
+        <p className="border border-border px-5 py-10 text-center text-sm text-muted-foreground">
+          No artworks in this collection yet.
+        </p>
+      )}
+
+      {pageCount > 1 ? (
+        <Pagination className="mt-12">
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious
+                disabled={currentPage === 1}
+                onClick={() => setPage(Math.max(1, currentPage - 1))}
+              />
+            </PaginationItem>
+            {getPageItems().map((item, index) => (
+              <PaginationItem key={`${item}-${index}`}>
+                {item === "ellipsis" ? (
+                  <PaginationEllipsis />
+                ) : (
+                  <PaginationLink
+                    isActive={item === currentPage}
+                    onClick={() => setPage(item)}
+                  >
+                    {item}
+                  </PaginationLink>
+                )}
+              </PaginationItem>
+            ))}
+            <PaginationItem>
+              <PaginationNext
+                disabled={currentPage === pageCount}
+                onClick={() => setPage(Math.min(pageCount, currentPage + 1))}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       ) : null}
     </div>
   )
 }
 
 export default function Artworks() {
+  const { artworks } = useArtworkData()
   const tabsScrollRef = useRef<HTMLDivElement | null>(null)
   const panels = useMemo(
     () =>
       artworkCategories.map((category) => ({
         ...category,
-        works: getArtworksByCategory(category.value),
+        works:
+          category.value === "all"
+            ? artworks
+            : artworks.filter((artwork) => artwork.category === category.value),
       })),
-    []
+    [artworks]
   )
 
   function scrollTabs(direction: "left" | "right") {
@@ -143,7 +194,7 @@ export default function Artworks() {
 
             {panels.map((panel) => (
               <TabsContent key={panel.value} value={panel.value}>
-                <ArtworksPanel works={panel.works} />
+                <ArtworksPanel key={panel.value} works={panel.works} />
               </TabsContent>
             ))}
           </Tabs>

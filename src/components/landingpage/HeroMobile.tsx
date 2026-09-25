@@ -11,7 +11,15 @@ import {
 import { useCallback, useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 
-import { heroArtworks } from "@/assets/images"
+import { useSiteContent } from "@/components/site-content-provider"
+
+type HeroArtwork = {
+  alt: string
+  medium: string
+  slug: string
+  src: string
+  title: string
+}
 
 const socialLinks = [
   {
@@ -34,10 +42,11 @@ function formatSlideNumber(value: number) {
   return value.toString().padStart(2, "0")
 }
 
-export default function HeroMobile() {
+export default function HeroMobile({ artworks }: { artworks: HeroArtwork[] }) {
+  const { content } = useSiteContent()
   const carouselApiRef = useRef<EmblaCarouselType>(null)
   const [currentSlide, setCurrentSlide] = useState(1)
-  const slideCount = heroArtworks.length
+  const slideCount = artworks.length
 
   const [carouselRef, api] = useEmblaCarousel(
     {
@@ -75,22 +84,22 @@ export default function HeroMobile() {
   }, [api, handleSelect])
 
   return (
-    <section className="relative min-h-[calc(100svh-90px)] overflow-hidden bg-background px-4 pb-6 pt-5">
+    <section className="relative min-h-[calc(100svh-90px)] overflow-hidden bg-background px-4 pt-5 pb-6">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(201,154,61,0.2),transparent_34%),linear-gradient(180deg,rgba(11,11,13,0.82)_0%,rgba(11,11,13,0.58)_52%,rgba(11,11,13,0.82)_100%)]" />
 
       <div className="relative mx-auto flex min-h-[calc(100svh-121px)] max-w-[460px] flex-col justify-center">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.22em] text-secondary">
-          Artist • Sculptor • Designer
+        <p className="text-center text-xs font-semibold tracking-[0.22em] text-secondary uppercase">
+          {content.hero.eyebrow}
         </p>
 
-        <h1 className="head mx-auto mt-4 max-w-[390px] text-center text-[2.85rem] font-semibold leading-[0.98] text-[#f7f3ea]">
-          Creating Art That Transcends Canvas, Space and Time
+        <h1 className="head mx-auto mt-4 max-w-[390px] text-center text-[2.85rem] leading-[0.98] font-semibold text-[#f7f3ea]">
+          {content.hero.title}
           <span className="text-secondary">.</span>
         </h1>
 
         <div className="mt-6 flex items-center justify-between gap-4">
           <div className="head flex items-end gap-2 tracking-widest">
-            <span className="text-4xl font-semibold leading-none text-secondary">
+            <span className="text-4xl leading-none font-semibold text-secondary">
               {formatSlideNumber(currentSlide)}
             </span>
             <span className="pb-1 text-2xl leading-none text-[#d7cfbd]/70">
@@ -123,8 +132,8 @@ export default function HeroMobile() {
           ref={carouselRef}
         >
           <div className="flex">
-            {heroArtworks.map((artwork) => (
-              <div className="flex-[0_0_100%] min-w-0" key={artwork.src}>
+            {artworks.map((artwork) => (
+              <div className="min-w-0 flex-[0_0_100%]" key={artwork.src}>
                 <Link
                   to={`/artworks/${artwork.slug}`}
                   className="relative block overflow-hidden rounded-lg"
@@ -155,16 +164,15 @@ export default function HeroMobile() {
           </div>
         </div>
 
-        <p className="mx-auto mt-5 max-w-[370px] text-center text-sm font-light leading-7 text-[#d7cfbd]">
-          Exploring African creativity through painting, sculpture, public art,
-          and cultural projects shaped by a distinct visual language.
+        <p className="mx-auto mt-5 max-w-[370px] text-center text-sm leading-7 font-light text-[#d7cfbd]">
+          {content.hero.description}
         </p>
 
         <Link
           to="/artworks"
-          className="mx-auto mt-5 inline-flex h-13 items-center justify-center gap-4 rounded-full border border-secondary/80 px-7 text-xs font-semibold uppercase tracking-[0.18em] text-[#f7f3ea] transition-all hover:border-secondary hover:bg-secondary hover:text-[#1a1a1f]"
+          className="mx-auto mt-5 inline-flex h-13 items-center justify-center gap-4 rounded-full border border-secondary/80 px-7 text-xs font-semibold tracking-[0.18em] text-[#f7f3ea] uppercase transition-all hover:border-secondary hover:bg-secondary hover:text-[#1a1a1f]"
         >
-          View Artworks
+          {content.hero.ctaLabel}
           <ArrowRight className="size-5" strokeWidth={1.7} />
         </Link>
 
@@ -184,7 +192,7 @@ export default function HeroMobile() {
                 {Icon ? (
                   <Icon className="size-4 md:size-6" strokeWidth={1.6} />
                 ) : (
-                  <span className="font-bold text-sm md:text-lg tracking-tight">
+                  <span className="text-sm font-bold tracking-tight md:text-lg">
                     Be
                   </span>
                 )}

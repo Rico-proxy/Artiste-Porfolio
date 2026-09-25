@@ -21,7 +21,6 @@ const mainNavItems = [
   { label: "UAL Studios", to: "/ual-studios" },
   { label: "Exhibitions", to: "/exhibitions" },
   { label: "Press", to: "/press" },
-  { label: "Dashboard", to: "/dashboard" },
 ]
 
 const contactNavItem = { label: "Contact", to: "/contact" }

@@ -1,11 +1,12 @@
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import { Link, Navigate, useParams } from "react-router-dom"
 
-import { artworks, getArtworkBySlug } from "@/data"
+import { useArtworkData } from "@/components/dashboard/artwork-data-provider"
 
 export default function ArtworkStory() {
   const { slug } = useParams()
-  const artwork = getArtworkBySlug(slug)
+  const { artworks } = useArtworkData()
+  const artwork = artworks.find((item) => item.slug === slug)
 
   if (!artwork) {
     return <Navigate to="/artworks" replace />

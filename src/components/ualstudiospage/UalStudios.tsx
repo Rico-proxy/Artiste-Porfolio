@@ -1,50 +1,31 @@
 import { Brush, Building2, Gem, PenTool } from "lucide-react"
 
-const services = [
-  {
-    icon: Brush,
-    title: "Art & Design",
-    text: "Original visual concepts, art direction, custom surface work, and studio-led creative development.",
-  },
-  {
-    icon: Building2,
-    title: "Corporate & Institutional Projects",
-    text: "Commissioned identity pieces, sculptural installations, and art programs for organizations.",
-  },
-  {
-    icon: PenTool,
-    title: "Signage & Identity",
-    text: "Cultural signage, landmark identity, exterior statements, and architectural graphic applications.",
-  },
-  {
-    icon: Gem,
-    title: "Commissioned Works",
-    text: "Private and public commissions shaped from brief, site, material, story, and intended audience.",
-  },
-]
+import { useSiteContent } from "@/components/site-content-provider"
+
+const serviceIcons = [Brush, Building2, PenTool, Gem]
 
 export default function UalStudios() {
+  const { content } = useSiteContent()
+
   return (
     <section className="bg-background px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
       <div className="mx-auto max-w-[1440px]">
         <div className="max-w-4xl">
-          <p className="text-sm font-medium uppercase tracking-[0.18em] text-secondary">
-            UAL Studios
+          <p className="text-sm font-medium tracking-[0.18em] text-secondary uppercase">
+            {content.ualStudios.eyebrow}
           </p>
-          <h1 className="head mt-6 text-6xl font-medium leading-none text-foreground md:text-8xl">
-            Studio Practice
+          <h1 className="head mt-6 text-6xl leading-none font-medium text-foreground md:text-8xl">
+            {content.ualStudios.title}
             <span className="text-secondary">.</span>
           </h1>
           <p className="mt-8 text-lg leading-8 text-muted-foreground">
-            UAL Studios operates as the creative engine for commissioned art,
-            design development, cultural projects, and institutional creative
-            direction.
+            {content.ualStudios.description}
           </p>
         </div>
 
         <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {services.map((service) => {
-            const Icon = service.icon
+          {content.ualStudios.services.map((service, index) => {
+            const Icon = serviceIcons[index % serviceIcons.length]
 
             return (
               <article key={service.title} className="border border-border p-7">
@@ -61,13 +42,11 @@ export default function UalStudios() {
         </div>
 
         <div className="mt-14 grid gap-6 border-y border-border py-10 md:grid-cols-3">
-          {["Concept Development", "Fabrication Direction", "Installation Planning"].map(
-            (step) => (
-              <p key={step} className="text-lg text-foreground">
-                {step}
-              </p>
-            )
-          )}
+          {content.ualStudios.steps.map((step) => (
+            <p key={step} className="text-lg text-foreground">
+              {step}
+            </p>
+          ))}
         </div>
       </div>
     </section>
