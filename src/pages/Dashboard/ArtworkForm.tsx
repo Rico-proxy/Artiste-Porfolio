@@ -140,6 +140,7 @@ export default function ArtworkForm({ artwork }: { artwork?: Artwork }) {
         description: "Please choose an image file.",
         type: "error",
       })
+      event.target.value = ""
       return
     }
 
@@ -218,7 +219,10 @@ export default function ArtworkForm({ artwork }: { artwork?: Artwork }) {
     } catch (error) {
       toast.add({
         title: artwork ? "Update failed" : "Create failed",
-        description: error instanceof Error ? error.message : "Could not save this artwork.",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Could not save this artwork.",
         type: "error",
       })
     } finally {
@@ -344,7 +348,15 @@ export default function ArtworkForm({ artwork }: { artwork?: Artwork }) {
 
       <aside className="space-y-6">
         <section className="border border-border bg-card/40 p-5">
-          <div className="overflow-hidden border border-border bg-background">
+          <button
+            type="button"
+            aria-label={
+              imagePreview ? "Replace artwork image" : "Upload artwork image"
+            }
+            disabled={isUploading}
+            onClick={() => fileInputRef.current?.click()}
+            className="mx-auto block w-full max-w-[280px] overflow-hidden border border-border bg-background text-left transition-colors hover:border-secondary focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 sm:max-w-[320px] lg:max-w-[340px] xl:max-w-none"
+          >
             {imagePreview ? (
               <img
                 src={imagePreview}
@@ -356,10 +368,11 @@ export default function ArtworkForm({ artwork }: { artwork?: Artwork }) {
                 <div>
                   <ImagePlus className="mx-auto size-8" strokeWidth={1.5} />
                   <p className="mt-3 text-sm">Upload artwork image</p>
+                  <p className="mt-1 text-xs">Click to choose a picture</p>
                 </div>
               </div>
             )}
-          </div>
+          </button>
           <input
             ref={fileInputRef}
             type="file"
@@ -417,7 +430,11 @@ export default function ArtworkForm({ artwork }: { artwork?: Artwork }) {
             disabled={isUploading || isSaving}
           >
             <Save className="size-4" strokeWidth={1.8} />
-            {isUploading ? "Uploading Image..." : isSaving ? "Saving..." : "Save Artwork"}
+            {isUploading
+              ? "Uploading Image..."
+              : isSaving
+                ? "Saving..."
+                : "Save Artwork"}
           </Button>
         </section>
       </aside>

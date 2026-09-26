@@ -11,7 +11,9 @@ const HOMEPAGE_ARTWORK_COUNT = 7
 export default function HomepagePage() {
   const { artworks, isLoading } = useArtworkData()
   const { content, saveContent } = useSiteContent()
-  const [selectedSlugs, setSelectedSlugs] = useState(() => content.hero.artworkSlugs)
+  const [selectedSlugs, setSelectedSlugs] = useState(
+    () => content.hero.artworkSlugs
+  )
   const [isSaving, setIsSaving] = useState(false)
 
   useEffect(() => {
@@ -49,7 +51,9 @@ export default function HomepagePage() {
       toast.add({
         title: "Save failed",
         description:
-          error instanceof Error ? error.message : "Could not save the homepage artworks.",
+          error instanceof Error
+            ? error.message
+            : "Could not save the homepage artworks.",
         type: "error",
       })
     } finally {
@@ -68,7 +72,8 @@ export default function HomepagePage() {
             Hero artworks
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Choose the 7 artworks shown in the homepage carousel. The number on each selected image sets its order.
+            Choose the 7 artworks shown in the homepage carousel. The number on
+            each selected image sets its order.
           </p>
         </div>
         <Button
@@ -102,50 +107,112 @@ export default function HomepagePage() {
         </div>
 
         {isLoading ? (
-          <p className="py-8 text-sm text-muted-foreground">Loading artworks...</p>
+          <p className="py-8 text-sm text-muted-foreground">
+            Loading artworks...
+          </p>
         ) : (
-          <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-            {artworks.map((artwork) => {
-              const selectedIndex = selectedSlugs.indexOf(artwork.slug)
-              const isSelected = selectedIndex >= 0
-              const isDisabled =
-                !isSelected && selectedSlugs.length >= HOMEPAGE_ARTWORK_COUNT
-
-              return (
-                <button
-                  key={artwork.slug}
-                  type="button"
-                  aria-pressed={isSelected}
-                  disabled={isDisabled}
-                  onClick={() => toggleArtwork(artwork.slug)}
-                  className={[
-                    "group relative overflow-hidden border text-left transition-colors",
-                    isSelected ? "border-secondary" : "border-border hover:border-secondary/60",
-                    isDisabled ? "cursor-not-allowed opacity-45" : "",
-                  ].join(" ")}
-                >
-                  <img
-                    src={artwork.src}
-                    alt={artwork.alt}
-                    className="aspect-[4/3] w-full object-cover transition-transform group-hover:scale-105"
-                  />
-                  <span className="block truncate px-3 py-2 text-xs font-medium text-foreground">
-                    {artwork.title}
+          <>
+            {selectedSlugs.length > 0 ? (
+              <div className="mt-5 border-b border-border pb-5">
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <div>
+                    <h3 className="text-sm font-semibold text-foreground">
+                      Selected for homepage
+                    </h3>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      Your selected artworks stay here while you browse.
+                    </p>
+                  </div>
+                  <span className="text-xs font-medium text-secondary">
+                    {selectedSlugs.length} selected
                   </span>
-                  {isSelected ? (
-                    <span className="absolute right-2 top-2 grid size-7 place-items-center bg-secondary text-secondary-foreground">
-                      {selectedIndex + 1}
-                    </span>
-                  ) : null}
-                  {isSelected ? (
-                    <span className="absolute left-2 top-2 grid size-7 place-items-center bg-[#111113]/80 text-secondary">
-                      <Check className="size-4" strokeWidth={2.2} />
-                    </span>
-                  ) : null}
-                </button>
-              )
-            })}
-          </div>
+                </div>
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
+                  {selectedSlugs.map((slug) => {
+                    const artwork = artworks.find((item) => item.slug === slug)
+                    if (!artwork) return null
+
+                    return (
+                      <button
+                        key={artwork.slug}
+                        type="button"
+                        aria-label={`Remove ${artwork.title} from homepage`}
+                        onClick={() => toggleArtwork(artwork.slug)}
+                        className="group relative overflow-hidden border border-secondary text-left"
+                      >
+                        <img
+                          src={artwork.src}
+                          alt={artwork.alt}
+                          className="aspect-[4/3] w-full object-cover transition-transform group-hover:scale-105"
+                        />
+                        <span className="absolute top-2 right-2 grid size-7 place-items-center bg-secondary text-xs font-semibold text-secondary-foreground">
+                          {selectedSlugs.indexOf(artwork.slug) + 1}
+                        </span>
+                        <span className="block truncate px-2 py-2 text-xs font-medium text-foreground">
+                          {artwork.title}
+                        </span>
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            ) : null}
+
+            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+              {[...artworks]
+                .sort((a, b) => {
+                  const aIndex = selectedSlugs.indexOf(a.slug)
+                  const bIndex = selectedSlugs.indexOf(b.slug)
+                  return (
+                    (aIndex < 0 ? Number.MAX_SAFE_INTEGER : aIndex) -
+                    (bIndex < 0 ? Number.MAX_SAFE_INTEGER : bIndex)
+                  )
+                })
+                .map((artwork) => {
+                  const selectedIndex = selectedSlugs.indexOf(artwork.slug)
+                  const isSelected = selectedIndex >= 0
+                  const isDisabled =
+                    !isSelected &&
+                    selectedSlugs.length >= HOMEPAGE_ARTWORK_COUNT
+
+                  return (
+                    <button
+                      key={artwork.slug}
+                      type="button"
+                      aria-pressed={isSelected}
+                      disabled={isDisabled}
+                      onClick={() => toggleArtwork(artwork.slug)}
+                      className={[
+                        "group relative overflow-hidden border text-left transition-colors",
+                        isSelected
+                          ? "border-secondary"
+                          : "border-border hover:border-secondary/60",
+                        isDisabled ? "cursor-not-allowed opacity-45" : "",
+                      ].join(" ")}
+                    >
+                      <img
+                        src={artwork.src}
+                        alt={artwork.alt}
+                        className="aspect-[4/3] w-full object-cover transition-transform group-hover:scale-105"
+                      />
+                      <span className="block truncate px-3 py-2 text-xs font-medium text-foreground">
+                        {artwork.title}
+                      </span>
+                      {isSelected ? (
+                        <span className="absolute top-2 right-2 grid size-7 place-items-center bg-secondary text-secondary-foreground">
+                          {selectedIndex + 1}
+                        </span>
+                      ) : null}
+                      {isSelected ? (
+                        <span className="absolute top-2 left-2 grid size-7 place-items-center bg-[#111113]/80 text-secondary">
+                          <Check className="size-4" strokeWidth={2.2} />
+                        </span>
+                      ) : null}
+                    </button>
+                  )
+                })}
+            </div>
+          </>
         )}
       </section>
     </div>

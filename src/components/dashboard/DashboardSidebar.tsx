@@ -1,21 +1,22 @@
 import {
-  FileText,
-  Home,
-  Images,
-  LayoutDashboard,
-  LogOut,
-  Plus,
-} from "lucide-react"
+  FiExternalLink,
+  FiEdit3,
+  FiFileText,
+  FiGrid,
+  FiHome,
+  FiImage,
+  FiLogOut,
+} from "react-icons/fi"
 import { Link, NavLink, useNavigate } from "react-router-dom"
 
 import { logoutAdmin } from "@/lib/admin-auth"
 
 const navItems = [
-  { label: "Overview", to: "/dashboard", icon: LayoutDashboard, end: true },
-  { label: "Homepage", to: "/dashboard/homepage", icon: Home },
-  { label: "Artworks", to: "/dashboard/artworks", icon: Images },
-  { label: "Create", to: "/dashboard/create", icon: Plus },
-  { label: "Site Text", to: "/dashboard/content", icon: FileText },
+  { label: "Overview", to: "/dashboard", icon: FiGrid, end: true },
+  { label: "Homepage", to: "/dashboard/homepage", icon: FiHome },
+  { label: "Artworks", to: "/dashboard/artworks", icon: FiImage },
+  { label: "Create", to: "/dashboard/create", icon: FiEdit3 },
+  { label: "Site Text", to: "/dashboard/content", icon: FiFileText },
 ]
 
 export default function DashboardSidebar({
@@ -32,7 +33,7 @@ export default function DashboardSidebar({
   }
 
   return (
-    <div className="flex h-full flex-col bg-[#111113] text-[#f7f3ea]">
+    <div className="flex h-full flex-col rounded-tr-2xl rounded-br-2xl bg-[#111113] text-[#f7f3ea]">
       <div className="border-b border-white/10 px-6 py-6">
         <Link
           to="/dashboard"
@@ -66,7 +67,7 @@ export default function DashboardSidebar({
                 ].join(" ")
               }
             >
-              <Icon className="size-4" strokeWidth={1.8} />
+              <Icon className="size-4" strokeWidth={1.4} />
               {item.label}
             </NavLink>
           )
@@ -79,7 +80,7 @@ export default function DashboardSidebar({
           className="flex h-10 items-center gap-3 px-3 text-sm text-white/60 transition-colors hover:text-secondary"
           onClick={onNavigate}
         >
-          <Home className="size-4" strokeWidth={1.8} />
+          <FiExternalLink className="size-4" strokeWidth={1.4} />
           Public Site
         </Link>
         <button
@@ -87,7 +88,7 @@ export default function DashboardSidebar({
           className="mt-1 flex h-10 w-full items-center gap-3 px-3 text-sm text-white/60 transition-colors hover:text-secondary"
           onClick={handleLogout}
         >
-          <LogOut className="size-4" strokeWidth={1.8} />
+          <FiLogOut className="size-4" strokeWidth={1.4} />
           Sign out
         </button>
       </div>
